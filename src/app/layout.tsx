@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Truman — Browser Automation Without the Infrastructure Nightmare",
+  title: "Truman — Browser Automation Without the Infrastructure Headache",
   description:
-    "Truman gives AI developers one API to run isolated browser environments with built-in proxies, LLM routing, and scheduling. No VPS stitching. No container babysitting. Start free.",
+    "Browsers, proxies, AI models, and scheduling in one isolated environment. One API call to spin it all up. Start free, no credit card needed.",
   openGraph: {
-    title: "Truman — Browser Automation Without the Infrastructure Nightmare",
+    title: "Truman — Browser Automation Without the Infrastructure Headache",
     description:
-      "Truman gives AI developers one API to run isolated browser environments with built-in proxies, LLM routing, and scheduling. No VPS stitching. No container babysitting. Start free.",
+      "Browsers, proxies, AI models, and scheduling in one isolated environment. One API call to spin it all up. Start free, no credit card needed.",
     type: "website",
   },
 };
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

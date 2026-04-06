@@ -1,336 +1,873 @@
 import WaitlistForm from "@/components/waitlist-form";
 
-const valueProps = [
-  {
-    title: "Everything, One Call",
-    description:
-      "Spin up an isolated environment with N Chrome instances, residential proxies, and multi-provider LLM access using a single API call — no YAML files, no Docker babysitting.",
-    icon: "⚡",
-  },
-  {
-    title: "Cut Your Infra Bill",
-    description:
-      "Teams switching from self-managed VPS, proxy pools, and separate API plans typically cut monthly spend by 50% or more — and get back 3 to 4 hours a day in manual ops work.",
-    icon: "📉",
-  },
-  {
-    title: "Swap Models Per Task",
-    description:
-      "Route Claude for long-form reasoning, GPT for quick hits — switch LLM providers per task through one endpoint, no config changes, no redeployments.",
-    icon: "🔀",
-  },
-];
-
-const stackItems = [
-  { label: "Anti-detect browsers", competitor: true, truman: true },
-  { label: "Headless Chrome", competitor: true, truman: true },
-  { label: "Residential proxies", competitor: false, truman: true },
-  { label: "Multi-provider AI", competitor: false, truman: true },
-  { label: "Scheduling", competitor: false, truman: true },
-  { label: "File management", competitor: false, truman: true },
-  { label: "Isolated per user", competitor: false, truman: true },
-  { label: "Single API", competitor: false, truman: true },
-];
-
-export default function Page() {
+/* ---- Icons (inline SVG, zero dependencies) ---- */
+function IconBrowser() {
   return (
-    <main className="min-h-screen bg-[#F5F4F0] text-[#1A1A2E]">
-      {/* Nav */}
-      <nav className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-        <span className="text-xl font-black tracking-tight text-[#1A1A2E]">
-          Truman
-        </span>
-        <a
-          href="#waitlist"
-          className="bg-[#E05C2A] text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
-        >
-          Start free
-        </a>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="2" y="3" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M2 7h16" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="5.5" cy="5" r="1" fill="currentColor" />
+      <circle cx="8.5" cy="5" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IconDollar() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 2v16M7 5.5C7 4.12 8.34 3 10 3s3 1.12 3 2.5S11.66 8 10 8s-3 1.12-3 2.5S8.34 14 10 14s3-1.12 3-2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconBrain() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 3C7.24 3 5 5.24 5 8c0 1.1.36 2.12.96 2.94C5.36 11.64 5 12.66 5 14c0 1.66 1.34 3 3 3h4c1.66 0 3-1.34 3-3 0-1.34-.36-2.36-.96-3.06.6-.82.96-1.84.96-2.94 0-2.76-2.24-5-5-5z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M10 8v6M8 11h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconCheck({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconX({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconClose() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M4 4l8 8M12 4l-8 8" stroke="#f87171" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconArrow() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export default function Home() {
+  return (
+    <>
+      {/* ===== NAV ===== */}
+      <nav className="nav">
+        <div className="container nav-inner">
+          <a href="#" className="nav-logo">
+            tru<span>man</span>
+          </a>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <a href="#pricing" className="btn-ghost hide-mobile">Pricing</a>
+            <a href="#waitlist" className="btn-primary" style={{ padding: "0.5rem 1.125rem", fontSize: "0.875rem" }}>
+              Start free
+            </a>
+          </div>
+        </div>
       </nav>
 
-      {/* Hero */}
-      <section className="max-w-6xl mx-auto px-6 pt-16 pb-24 md:pt-24 md:pb-32">
-        <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-2 bg-[#1A1A2E] text-[#F5F4F0] text-xs font-semibold px-3 py-1.5 rounded-full mb-8 tracking-wide uppercase">
-            <span className="w-1.5 h-1.5 bg-[#E05C2A] rounded-full animate-pulse" />
-            Early access open
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black leading-[1.02] tracking-tight mb-6">
-            One API call.
-            <br />
-            <span className="text-[#E05C2A]">Full browser</span>
-            <br />
-            automation stack.
-          </h1>
-          <p className="text-lg md:text-xl text-[#1A1A2E]/70 max-w-2xl leading-relaxed mb-12">
-            Browsers, proxies, AI, scheduling, file management — isolated per
-            user, ready in seconds. Stop duct-taping five tools together at 2am.
-          </p>
+      {/* ===== HERO ===== */}
+      <section
+        className="hero-grid"
+        style={{
+          paddingTop: "8rem",
+          paddingBottom: "6rem",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Radial glow */}
+        <div
+          className="hero-radial"
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+          }}
+        />
 
-          <div id="waitlist" className="max-w-md">
-            <WaitlistForm />
-            <p className="text-xs text-[#1A1A2E]/50 mt-3">
-              Free plan includes 3 browser instances. No credit card required.
-            </p>
-          </div>
-        </div>
-
-        {/* Code snippet */}
-        <div className="mt-16 max-w-2xl">
-          <div className="bg-[#1A1A2E] rounded-2xl overflow-hidden shadow-2xl">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10">
-              <div className="w-3 h-3 rounded-full bg-[#E05C2A]/60" />
-              <div className="w-3 h-3 rounded-full bg-white/20" />
-              <div className="w-3 h-3 rounded-full bg-white/20" />
-              <span className="ml-2 text-white/30 text-xs font-mono">
-                truman.js
-              </span>
-            </div>
-            <pre className="px-6 py-6 text-sm font-mono overflow-x-auto leading-relaxed">
-              <code>
-                <span className="text-[#E05C2A]">const</span>
-                <span className="text-white"> env </span>
-                <span className="text-[#E05C2A]">=</span>
-                <span className="text-white"> await truman.</span>
-                <span className="text-[#E8A87C]">create</span>
-                <span className="text-white">{"({"}</span>
-                {"\n"}
-                <span className="text-white/40">{"  "}</span>
-                <span className="text-[#7EC8E3]">browsers</span>
-                <span className="text-white">: </span>
-                <span className="text-[#98D982]">5</span>
-                <span className="text-white">,</span>
-                {"\n"}
-                <span className="text-white/40">{"  "}</span>
-                <span className="text-[#7EC8E3]">proxies</span>
-                <span className="text-white">: </span>
-                <span className="text-[#98D982]">"residential"</span>
-                <span className="text-white">,</span>
-                {"\n"}
-                <span className="text-white/40">{"  "}</span>
-                <span className="text-[#7EC8E3]">llm</span>
-                <span className="text-white">: [</span>
-                <span className="text-[#98D982]">"claude"</span>
-                <span className="text-white">, </span>
-                <span className="text-[#98D982]">"gpt-4o"</span>
-                <span className="text-white">],</span>
-                {"\n"}
-                <span className="text-white/40">{"  "}</span>
-                <span className="text-[#7EC8E3]">schedule</span>
-                <span className="text-white">: </span>
-                <span className="text-[#98D982]">"*/15 * * * *"</span>
-                {"\n"}
-                <span className="text-white">{"});"}</span>
-                {"\n\n"}
-                <span className="text-white/40">
-                  {"// "}Ready in {"<"}3 seconds. Every time.
+        <div className="container" style={{ position: "relative" }}>
+          {/* Two-column layout on large screens */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "4rem",
+              alignItems: "center",
+            }}
+          >
+            {/* Left: copy + form */}
+            <div>
+              <div className="anim-fade-up anim-fade-up-1" style={{ marginBottom: "1.5rem" }}>
+                <span className="tag">
+                  <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", background: "var(--accent)" }} />
+                  Early access
                 </span>
-              </code>
-            </pre>
-          </div>
-        </div>
-      </section>
+              </div>
 
-      {/* Value props */}
-      <section className="bg-[#1A1A2E] py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="text-[#E05C2A] text-sm font-semibold uppercase tracking-widest mb-4">
-            Why Truman
-          </p>
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-16 max-w-2xl leading-tight">
-            Built for teams who can&apos;t afford to babysit infra.
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {valueProps.map((prop) => (
-              <div
-                key={prop.title}
-                className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/8 transition-colors"
+              <h1
+                className="font-display anim-fade-up anim-fade-up-2"
+                style={{
+                  fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
+                  fontWeight: 800,
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.04em",
+                  marginBottom: "1.25rem",
+                  color: "var(--text)",
+                }}
               >
-                <div className="text-3xl mb-5">{prop.icon}</div>
-                <h3 className="text-white font-bold text-xl mb-3">
-                  {prop.title}
-                </h3>
-                <p className="text-white/60 leading-relaxed text-sm">
-                  {prop.description}
+                One API call.{" "}
+                <br />
+                <span style={{ color: "var(--accent)" }}>Full browser</span>
+                <br />
+                automation stack.
+              </h1>
+
+              <p
+                className="anim-fade-up anim-fade-up-3"
+                style={{
+                  fontSize: "1.0625rem",
+                  color: "var(--text-2)",
+                  lineHeight: 1.65,
+                  marginBottom: "2rem",
+                  maxWidth: "420px",
+                }}
+              >
+                Spin up isolated Chrome environments with residential proxies and AI models
+                baked in. No Docker configs. No proxy billing dashboards. No vendor juggling.
+                Just a single call.
+              </p>
+
+              {/* Form */}
+              <div id="waitlist" className="anim-fade-up anim-fade-up-4">
+                <WaitlistForm />
+                <p style={{ marginTop: "0.75rem", fontSize: "0.8125rem", color: "var(--text-3)" }}>
+                  Free tier includes 3 browser instances. No credit card needed.
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Differentiation */}
-      <section className="py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <p className="text-[#E05C2A] text-sm font-semibold uppercase tracking-widest mb-4">
-                The full stack
-              </p>
-              <h2 className="text-3xl md:text-5xl font-black leading-tight mb-6">
-                Nobody else ships all five.
-              </h2>
-              <p className="text-[#1A1A2E]/70 leading-relaxed text-base max-w-md">
-                Anti-detect browsers give you profiles. Browserbase gives you
-                headless Chrome. Truman gives you the whole thing: browsers,
-                proxies, AI, scheduling, and file management, bundled into one
-                isolated environment per user and controlled through a single
-                API.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl border border-[#1A1A2E]/10 overflow-hidden shadow-xl">
-              <div className="grid grid-cols-3 text-xs font-bold uppercase tracking-wider text-[#1A1A2E]/40 border-b border-[#1A1A2E]/10 px-6 py-4">
-                <span>Feature</span>
-                <span className="text-center">Others</span>
-                <span className="text-center text-[#E05C2A]">Truman</span>
+              {/* Social proof row */}
+              <div
+                className="anim-fade-up anim-fade-up-5"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1.5rem",
+                  marginTop: "2rem",
+                  flexWrap: "wrap",
+                }}
+              >
+                {[
+                  { label: "20 browsers", sub: "per env" },
+                  { label: "5 proxy lines", sub: "residential" },
+                  { label: "Multi-LLM", sub: "one endpoint" },
+                ].map((stat) => (
+                  <div key={stat.label} style={{ display: "flex", alignItems: "baseline", gap: "0.375rem" }}>
+                    <span
+                      className="font-display"
+                      style={{ fontWeight: 700, fontSize: "0.9375rem", color: "var(--text)" }}
+                    >
+                      {stat.label}
+                    </span>
+                    <span style={{ fontSize: "0.75rem", color: "var(--text-3)" }}>{stat.sub}</span>
+                  </div>
+                ))}
               </div>
-              {stackItems.map((item, i) => (
-                <div
-                  key={item.label}
-                  className={`grid grid-cols-3 items-center px-6 py-4 text-sm ${
-                    i % 2 === 0 ? "bg-[#F5F4F0]/50" : ""
-                  }`}
-                >
-                  <span className="font-medium text-[#1A1A2E]">
-                    {item.label}
-                  </span>
-                  <span className="text-center">
-                    {item.competitor ? (
-                      <span className="text-green-500 font-bold">✓</span>
-                    ) : (
-                      <span className="text-[#1A1A2E]/25 font-bold">✗</span>
-                    )}
-                  </span>
-                  <span className="text-center">
-                    <span className="text-[#E05C2A] font-bold">✓</span>
-                  </span>
-                </div>
-              ))}
+            </div>
+
+            {/* Right: code window */}
+            <div className="code-window anim-fade-up anim-fade-up-3 hide-mobile" style={{ maxWidth: "520px" }}>
+              <div className="code-titlebar">
+                <span className="dot dot-red" />
+                <span className="dot dot-amber" />
+                <span className="dot dot-green" />
+                <span className="code-filename">automate.ts</span>
+              </div>
+              <div className="code-body">
+                <pre className="code-block">
+                  <span className="t-comment">{"// Spin up an isolated environment"}</span>{"\n"}
+                  <span className="t-keyword">const</span>{" "}
+                  <span className="t-const">env</span>
+                  {" = "}<span className="t-keyword">await</span>{" "}
+                  <span className="t-fn">truman</span>
+                  {"."}<span className="t-fn">create</span>{"({\n"}
+                  {"  "}<span className="t-prop">browsers</span>
+                  {": "}<span className="t-num">20</span>
+                  {",\n"}
+                  {"  "}<span className="t-prop">proxy</span>
+                  {": "}<span className="t-str">&quot;residential-us&quot;</span>
+                  {",\n"}
+                  {"  "}<span className="t-prop">models</span>
+                  {": ["}<span className="t-str">&quot;claude-opus-4&quot;</span>
+                  {", "}<span className="t-str">&quot;gpt-4o&quot;</span>
+                  {"],\n"}
+                  {"});\n"}
+                  {"\n"}
+                  <span className="t-comment">{"// Use it like any browser"}</span>{"\n"}
+                  <span className="t-keyword">const</span>{" "}
+                  <span className="t-const">page</span>
+                  {" = "}<span className="t-keyword">await</span>{" "}
+                  <span className="t-fn">env</span>
+                  {"."}<span className="t-fn">browser</span>
+                  {"."}<span className="t-fn">newPage</span>
+                  {"();\n"}
+                  <span className="t-keyword">await</span>{" "}
+                  <span className="t-fn">page</span>
+                  {"."}<span className="t-fn">goto</span>
+                  {"("}<span className="t-str">&quot;https://target.com&quot;</span>
+                  {");\n"}
+                  {"\n"}
+                  <span className="t-comment">{"// LLM extraction, same env"}</span>{"\n"}
+                  <span className="t-keyword">const</span>{" "}
+                  <span className="t-const">data</span>
+                  {" = "}<span className="t-keyword">await</span>{" "}
+                  <span className="t-fn">env</span>
+                  {"."}<span className="t-fn">llm</span>
+                  {"."}<span className="t-fn">extract</span>
+                  {"({\n"}
+                  {"  "}<span className="t-prop">page</span>{",\n"}
+                  {"  "}<span className="t-prop">prompt</span>
+                  {": "}<span className="t-str">&quot;Get all product prices&quot;</span>
+                  {",\n"}
+                  {"});\n"}
+                  {"\n"}
+                  <span className="t-comment">{"// That's it. No config files."}</span>
+                  <span className="cursor-blink" />
+                </pre>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing hint */}
-      <section className="bg-[#1A1A2E]/5 py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-[#E05C2A] text-sm font-semibold uppercase tracking-widest mb-4">
-              Pricing
-            </p>
-            <h2 className="text-3xl md:text-5xl font-black leading-tight mb-6">
-              Start free. Scale when it clicks.
+      {/* ===== PROBLEM ===== */}
+      <section style={{ padding: "5rem 0", borderTop: "1px solid var(--border)" }}>
+        <div className="container">
+          <div style={{ marginBottom: "3rem" }}>
+            <span className="section-label">The problem</span>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+                maxWidth: "600px",
+              }}
+            >
+              Browser automation is a{" "}
+              <span style={{ color: "var(--red)" }}>seven-tool problem</span>{" "}
+              today.
             </h2>
-            <p className="text-[#1A1A2E]/70 text-base leading-relaxed mb-12">
-              Start free with 3 browser instances — enough to validate before
-              you commit to anything. The $79/month plan gets you 20 browser
-              instances, 5 proxy lines, and 100K LLM tokens. Usage-based tiers
-              scale from there as your workloads grow.
+            <p style={{ color: "var(--text-2)", marginTop: "0.875rem", maxWidth: "520px", fontSize: "1rem" }}>
+              You didn&apos;t sign up to manage infra. But here you are, babysitting five
+              different services just to run Chrome with a proxy.
             </p>
-
-            <div className="grid sm:grid-cols-3 gap-4">
-              <div className="bg-white rounded-2xl border border-[#1A1A2E]/10 p-6 text-left">
-                <div className="text-2xl font-black mb-1">Free</div>
-                <div className="text-[#1A1A2E]/50 text-sm mb-4">
-                  To validate
-                </div>
-                <ul className="space-y-2 text-sm text-[#1A1A2E]/70">
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#E05C2A]">✓</span> 3 browser
-                    instances
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#E05C2A]">✓</span> Full API access
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#E05C2A]">✓</span> No credit card
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-[#E05C2A] rounded-2xl p-6 text-left text-white relative">
-                <div className="absolute top-4 right-4 text-xs bg-white/20 rounded-full px-2 py-0.5 font-semibold">
-                  Popular
-                </div>
-                <div className="text-2xl font-black mb-1">$79/mo</div>
-                <div className="text-white/70 text-sm mb-4">To grow</div>
-                <ul className="space-y-2 text-sm text-white/90">
-                  <li className="flex items-center gap-2">
-                    <span className="text-white font-bold">✓</span> 20 browser
-                    instances
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-white font-bold">✓</span> 5 proxy
-                    lines
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-white font-bold">✓</span> 100K LLM
-                    tokens
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-white rounded-2xl border border-[#1A1A2E]/10 p-6 text-left">
-                <div className="text-2xl font-black mb-1">Custom</div>
-                <div className="text-[#1A1A2E]/50 text-sm mb-4">To scale</div>
-                <ul className="space-y-2 text-sm text-[#1A1A2E]/70">
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#E05C2A]">✓</span> Usage-based
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#E05C2A]">✓</span> SLA support
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#E05C2A]">✓</span> Dedicated infra
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
 
-      {/* CTA */}
-      <section className="py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="bg-[#1A1A2E] rounded-3xl px-8 py-16 md:py-20 text-center relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#E05C2A] rounded-full blur-3xl -translate-y-1/2" />
-              <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#E05C2A] rounded-full blur-3xl translate-y-1/2" />
-            </div>
-            <div className="relative">
-              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4 max-w-2xl mx-auto">
-                Ready to throw away your 2am ops runbook?
-              </h2>
-              <p className="text-white/60 text-base mb-10 max-w-lg mx-auto">
-                Join AI developers and ops teams already on the waitlist. Free
-                to start, no credit card needed.
+          <div className="problem-grid">
+            {/* Without Truman */}
+            <div className="problem-card problem-card-bad">
+              <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "0.25rem" }}>
+                <IconClose />
+                <span
+                  className="font-display"
+                  style={{ fontWeight: 700, fontSize: "1.0625rem", color: "var(--text)" }}
+                >
+                  Without Truman
+                </span>
+              </div>
+              <p style={{ fontSize: "0.8125rem", color: "var(--text-3)", marginBottom: "0.5rem" }}>
+                The current state
               </p>
-              <div className="max-w-md mx-auto">
-                <WaitlistForm inverted />
+              <ul className="problem-list">
+                {[
+                  "Spin up a VPS, configure Docker, install Chrome manually",
+                  "Sign up for a proxy provider, rotate IPs, pay per GB",
+                  "Set up LLM API keys per provider, manage rate limits yourself",
+                  "Build your own scheduler or pay for another SaaS",
+                  "3-4 hours a day of ops work just to keep it running",
+                  "$200-400/month once you add it all up",
+                ].map((item) => (
+                  <li key={item}>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style={{ color: "var(--red)", flexShrink: 0 }}>
+                      <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* With Truman */}
+            <div className="problem-card problem-card-good">
+              <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "0.25rem" }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8l3.5 3.5L13 5" stroke="#34d399" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span
+                  className="font-display"
+                  style={{ fontWeight: 700, fontSize: "1.0625rem", color: "var(--text)" }}
+                >
+                  With Truman
+                </span>
+              </div>
+              <p style={{ fontSize: "0.8125rem", color: "var(--text-3)", marginBottom: "0.5rem" }}>
+                What it should feel like
+              </p>
+              <ul className="problem-list">
+                {[
+                  "One API call spins up a fully isolated environment",
+                  "Residential proxies included, no separate account needed",
+                  "Claude, GPT, and others through a single endpoint",
+                  "Built-in scheduling with cron support out of the box",
+                  "Zero ops work. It just runs.",
+                  "$79/month flat. That's it.",
+                ].map((item) => (
+                  <li key={item}>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style={{ color: "var(--green)", flexShrink: 0 }}>
+                      <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FEATURES ===== */}
+      <section style={{ padding: "5rem 0", borderTop: "1px solid var(--border)" }}>
+        <div className="container">
+          <div style={{ marginBottom: "3rem" }}>
+            <span className="section-label">What&apos;s inside</span>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Everything you need.{" "}
+              <span style={{ color: "var(--accent)" }}>Nothing you don&apos;t.</span>
+            </h2>
+          </div>
+
+          <div className="feature-grid">
+            {/* Card 1: Isolated envs */}
+            <div className="feature-card">
+              <div className="feature-icon">
+                <IconBrowser />
+              </div>
+              <h3
+                className="font-display"
+                style={{
+                  fontSize: "1.125rem",
+                  fontWeight: 700,
+                  letterSpacing: "-0.02em",
+                  marginBottom: "0.625rem",
+                }}
+              >
+                Isolated by default
+              </h3>
+              <p style={{ fontSize: "0.9375rem", color: "var(--text-2)", lineHeight: 1.6 }}>
+                Each environment is a dedicated Docker container. Your user A never leaks into
+                user B. Chrome instances, files, and session data are all scoped per environment.
+                Spin up as many as you need.
+              </p>
+              <div
+                style={{
+                  marginTop: "1.25rem",
+                  paddingTop: "1.25rem",
+                  borderTop: "1px solid var(--border)",
+                  display: "flex",
+                  gap: "1rem",
+                  flexWrap: "wrap",
+                }}
+              >
+                {["Chrome x20", "File storage", "Session mgmt"].map((chip) => (
+                  <span
+                    key={chip}
+                    className="font-mono"
+                    style={{
+                      fontSize: "0.75rem",
+                      color: "var(--text-3)",
+                      background: "rgba(255,255,255,0.03)",
+                      padding: "0.25rem 0.625rem",
+                      borderRadius: "4px",
+                      border: "1px solid var(--border)",
+                    }}
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Card 2: Cost */}
+            <div className="feature-card">
+              <div className="feature-icon feature-icon-amber">
+                <IconDollar />
+              </div>
+              <h3
+                className="font-display"
+                style={{
+                  fontSize: "1.125rem",
+                  fontWeight: 700,
+                  letterSpacing: "-0.02em",
+                  marginBottom: "0.625rem",
+                }}
+              >
+                Cut infra costs by 50%
+              </h3>
+              <p style={{ fontSize: "0.9375rem", color: "var(--text-2)", lineHeight: 1.6 }}>
+                Teams running their own VPS plus proxy pools plus LLM API keys typically pay
+                $200-400/month per setup. Truman bundles all three for $79. The math is obvious.
+              </p>
+              <div
+                style={{
+                  marginTop: "1.25rem",
+                  paddingTop: "1.25rem",
+                  borderTop: "1px solid var(--border)",
+                  display: "flex",
+                  gap: "1rem",
+                  flexWrap: "wrap",
+                }}
+              >
+                {["Residential proxies", "No VPS bill", "No op hours"].map((chip) => (
+                  <span
+                    key={chip}
+                    className="font-mono"
+                    style={{
+                      fontSize: "0.75rem",
+                      color: "var(--text-3)",
+                      background: "rgba(255,255,255,0.03)",
+                      padding: "0.25rem 0.625rem",
+                      borderRadius: "4px",
+                      border: "1px solid var(--border)",
+                    }}
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Card 3: Multi-LLM */}
+            <div className="feature-card">
+              <div className="feature-icon feature-icon-green">
+                <IconBrain />
+              </div>
+              <h3
+                className="font-display"
+                style={{
+                  fontSize: "1.125rem",
+                  fontWeight: 700,
+                  letterSpacing: "-0.02em",
+                  marginBottom: "0.625rem",
+                }}
+              >
+                Any model, any task
+              </h3>
+              <p style={{ fontSize: "0.9375rem", color: "var(--text-2)", lineHeight: 1.6 }}>
+                Use Claude for complex reasoning. Use GPT-4o for quick responses. Switch per
+                task, per environment, per call. One endpoint. No config file rewrites. No new
+                API keys to manage.
+              </p>
+              <div
+                style={{
+                  marginTop: "1.25rem",
+                  paddingTop: "1.25rem",
+                  borderTop: "1px solid var(--border)",
+                  display: "flex",
+                  gap: "1rem",
+                  flexWrap: "wrap",
+                }}
+              >
+                {["Claude", "GPT-4o", "Gemini"].map((chip) => (
+                  <span
+                    key={chip}
+                    className="font-mono"
+                    style={{
+                      fontSize: "0.75rem",
+                      color: "var(--text-3)",
+                      background: "rgba(255,255,255,0.03)",
+                      padding: "0.25rem 0.625rem",
+                      borderRadius: "4px",
+                      border: "1px solid var(--border)",
+                    }}
+                  >
+                    {chip}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-[#1A1A2E]/10 py-8">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-[#1A1A2E]/50 text-sm font-semibold tracking-tight">
-            Truman
+      {/* ===== COMPARISON ===== */}
+      <section style={{ padding: "5rem 0", borderTop: "1px solid var(--border)" }}>
+        <div className="container">
+          <div style={{ marginBottom: "3rem" }}>
+            <span className="section-label">How it stacks up</span>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+                maxWidth: "600px",
+              }}
+            >
+              Nobody else bundles all five.
+            </h2>
+            <p style={{ color: "var(--text-2)", marginTop: "0.875rem", maxWidth: "560px", fontSize: "1rem" }}>
+              Anti-detect browsers give you profiles. Browserbase gives you headless Chrome.
+              Truman gives you the full stack in one isolated environment, controlled through
+              one API.
+            </p>
+          </div>
+
+          <div className="compare-wrap" style={{ overflowX: "auto" }}>
+            <table className="compare-table">
+              <thead>
+                <tr>
+                  <th>Capability</th>
+                  <th>DIY stack</th>
+                  <th>Anti-detect</th>
+                  <th>Browserbase</th>
+                  <th className="col-truman-head">Truman</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  {
+                    feature: "Headless browser instances",
+                    diy: "manual",
+                    antidetect: true,
+                    browserbase: true,
+                    truman: true,
+                  },
+                  {
+                    feature: "Residential proxies",
+                    diy: "extra $",
+                    antidetect: false,
+                    browserbase: false,
+                    truman: true,
+                  },
+                  {
+                    feature: "Multi-provider LLM access",
+                    diy: "manual",
+                    antidetect: false,
+                    browserbase: false,
+                    truman: true,
+                  },
+                  {
+                    feature: "Task scheduling",
+                    diy: "manual",
+                    antidetect: false,
+                    browserbase: false,
+                    truman: true,
+                  },
+                  {
+                    feature: "File management",
+                    diy: "manual",
+                    antidetect: false,
+                    browserbase: false,
+                    truman: true,
+                  },
+                  {
+                    feature: "Isolated env per user",
+                    diy: "complex",
+                    antidetect: "partial",
+                    browserbase: "partial",
+                    truman: true,
+                  },
+                  {
+                    feature: "Single API for everything",
+                    diy: false,
+                    antidetect: false,
+                    browserbase: false,
+                    truman: true,
+                  },
+                ].map((row) => (
+                  <tr key={row.feature}>
+                    <td>{row.feature}</td>
+                    <td>
+                      {row.diy === true ? (
+                        <span className="check-icon"><IconCheck /></span>
+                      ) : row.diy === false ? (
+                        <span className="x-icon"><IconX /></span>
+                      ) : (
+                        <span className="partial">{row.diy}</span>
+                      )}
+                    </td>
+                    <td>
+                      {row.antidetect === true ? (
+                        <span className="check-icon"><IconCheck /></span>
+                      ) : row.antidetect === false ? (
+                        <span className="x-icon"><IconX /></span>
+                      ) : (
+                        <span className="partial">{row.antidetect}</span>
+                      )}
+                    </td>
+                    <td>
+                      {row.browserbase === true ? (
+                        <span className="check-icon"><IconCheck /></span>
+                      ) : row.browserbase === false ? (
+                        <span className="x-icon"><IconX /></span>
+                      ) : (
+                        <span className="partial">{row.browserbase}</span>
+                      )}
+                    </td>
+                    <td className="col-truman">
+                      {row.truman === true ? (
+                        <span className="check-icon"><IconCheck size={18} /></span>
+                      ) : (
+                        <span className="x-icon"><IconX /></span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PRICING ===== */}
+      <section id="pricing" style={{ padding: "5rem 0", borderTop: "1px solid var(--border)" }}>
+        <div className="container">
+          <div style={{ marginBottom: "3rem" }}>
+            <span className="section-label">Pricing</span>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Simple, honest pricing.
+            </h2>
+            <p style={{ color: "var(--text-2)", marginTop: "0.875rem", fontSize: "1rem" }}>
+              Start free. Pay when you scale.
+            </p>
+          </div>
+
+          <div className="pricing-grid">
+            {/* Free */}
+            <div className="pricing-card">
+              <span className="tag" style={{ marginBottom: "1.25rem", display: "inline-flex" }}>
+                Free
+              </span>
+              <div style={{ marginBottom: "1rem" }}>
+                <span className="price-amount">$0</span>
+                <span className="price-period">/mo</span>
+              </div>
+              <p style={{ fontSize: "0.9rem", color: "var(--text-2)", marginBottom: "0.25rem" }}>
+                For teams kicking the tires.
+              </p>
+              <ul className="pricing-feature-list">
+                {[
+                  "3 browser instances",
+                  "1 proxy line",
+                  "10K LLM tokens",
+                  "Community support",
+                ].map((f) => (
+                  <li key={f}>
+                    <span style={{ color: "var(--accent)" }}><IconCheck size={14} /></span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="#waitlist" className="btn-ghost" style={{ marginTop: "1.75rem", display: "flex", justifyContent: "center" }}>
+                Start free
+              </a>
+            </div>
+
+            {/* Starter - Featured */}
+            <div className="pricing-card pricing-card-featured">
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
+                <span className="tag">Starter</span>
+                <span
+                  className="font-mono"
+                  style={{
+                    fontSize: "0.6875rem",
+                    background: "rgba(34,211,238,0.1)",
+                    color: "var(--accent)",
+                    padding: "0.2rem 0.5rem",
+                    borderRadius: "4px",
+                    fontWeight: 600,
+                  }}
+                >
+                  Most popular
+                </span>
+              </div>
+              <div style={{ marginBottom: "1rem" }}>
+                <span className="price-amount">$79</span>
+                <span className="price-period">/mo</span>
+              </div>
+              <p style={{ fontSize: "0.9rem", color: "var(--text-2)", marginBottom: "0.25rem" }}>
+                For teams running real workloads.
+              </p>
+              <ul className="pricing-feature-list">
+                {[
+                  "20 browser instances",
+                  "5 residential proxy lines",
+                  "100K LLM tokens",
+                  "Task scheduling",
+                  "File management",
+                  "Email support",
+                ].map((f) => (
+                  <li key={f}>
+                    <span style={{ color: "var(--accent)" }}><IconCheck size={14} /></span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="#waitlist" className="btn-primary" style={{ marginTop: "1.75rem", display: "flex", justifyContent: "center" }}>
+                Get started
+                <IconArrow />
+              </a>
+            </div>
+
+            {/* Scale */}
+            <div className="pricing-card">
+              <span className="tag tag-amber" style={{ marginBottom: "1.25rem", display: "inline-flex" }}>
+                Scale
+              </span>
+              <div style={{ marginBottom: "1rem" }}>
+                <span className="price-amount" style={{ fontSize: "2rem" }}>Custom</span>
+              </div>
+              <p style={{ fontSize: "0.9rem", color: "var(--text-2)", marginBottom: "0.25rem" }}>
+                For high-volume operations.
+              </p>
+              <ul className="pricing-feature-list">
+                {[
+                  "Unlimited browser instances",
+                  "Dedicated proxy pool",
+                  "Custom LLM token volume",
+                  "Priority scheduling",
+                  "SLA + dedicated support",
+                  "Custom integrations",
+                ].map((f) => (
+                  <li key={f}>
+                    <span style={{ color: "var(--amber)" }}><IconCheck size={14} /></span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="mailto:hello@truman.dev" className="btn-ghost" style={{ marginTop: "1.75rem", display: "flex", justifyContent: "center" }}>
+                Talk to us
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FINAL CTA ===== */}
+      <section
+        style={{
+          padding: "5rem 0",
+          borderTop: "1px solid var(--border)",
+          background: "radial-gradient(ellipse 60% 60% at 50% 100%, rgba(34,211,238,0.05) 0%, transparent 70%)",
+        }}
+      >
+        <div className="container" style={{ textAlign: "center" }}>
+          <span className="section-label" style={{ display: "block", marginBottom: "1rem" }}>
+            Get started today
           </span>
-          <a
-            href="https://boringcombinator.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs text-[#1A1A2E]/40 hover:text-[#1A1A2E]/70 transition-colors"
+          <h2
+            className="font-display"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.25rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
+              lineHeight: 1.1,
+              marginBottom: "1.25rem",
+            }}
           >
-            <span className="bg-[#1A1A2E]/8 border border-[#1A1A2E]/10 rounded-full px-3 py-1.5 font-medium">
-              Built with Boring Combinator
+            Stop managing infra.
+            <br />
+            <span style={{ color: "var(--accent)" }}>Start building.</span>
+          </h2>
+          <p
+            style={{
+              color: "var(--text-2)",
+              fontSize: "1.0625rem",
+              marginBottom: "2.5rem",
+              maxWidth: "440px",
+              margin: "0 auto 2.5rem",
+              lineHeight: 1.6,
+            }}
+          >
+            Join the early access waitlist. Free tier available immediately.
+            No credit card needed.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <WaitlistForm />
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FOOTER ===== */}
+      <footer className="footer">
+        <div className="container footer-inner">
+          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
+            <span className="font-display" style={{ fontWeight: 800, fontSize: "0.9375rem", letterSpacing: "-0.02em" }}>
+              tru<span style={{ color: "var(--accent)" }}>man</span>
             </span>
-          </a>
+            <span style={{ color: "var(--text-3)", fontSize: "0.8125rem" }}>
+              &copy; {new Date().getFullYear()} Truman. All rights reserved.
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              color: "var(--text-3)",
+              fontSize: "0.8125rem",
+            }}
+          >
+            <span>Built with</span>
+            <a
+              href="https://boringcombinator.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              Boring Combinator
+            </a>
+          </div>
         </div>
       </footer>
-    </main>
+    </>
   );
 }

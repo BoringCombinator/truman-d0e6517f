@@ -2,19 +2,13 @@
 
 import { useState } from "react";
 
-interface WaitlistFormProps {
-  inverted?: boolean;
-}
-
-export default function WaitlistForm({ inverted = false }: WaitlistFormProps) {
+export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  async function handleSubmit(e: React.FormEvent) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email || status === "loading") return;
-
     setStatus("loading");
     setErrorMsg("");
 
@@ -25,101 +19,61 @@ export default function WaitlistForm({ inverted = false }: WaitlistFormProps) {
         body: JSON.stringify({ slug: "truman-d0e6517f", email }),
       });
 
-      if (!res.ok) {
-        throw new Error("Something went wrong. Please try again.");
-      }
-
+      if (!res.ok) throw new Error("Request failed");
       setStatus("success");
-      setEmail("");
-    } catch (err) {
+    } catch {
       setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setErrorMsg("Something went wrong. Try again.");
     }
-  }
+  };
 
   if (status === "success") {
     return (
-      <div
-        className={`rounded-2xl px-6 py-5 text-center border ${
-          inverted
-            ? "bg-white/10 border-white/20"
-            : "bg-[#1A1A2E]/5 border-[#1A1A2E]/10"
-        }`}
-      >
-        <div className="text-2xl mb-2">🎉</div>
-        <p
-          className={`font-bold text-base ${
-            inverted ? "text-white" : "text-[#1A1A2E]"
-          }`}
-        >
-          You&apos;re on the list.
-        </p>
-        <p
-          className={`text-sm mt-1 ${
-            inverted ? "text-white/60" : "text-[#1A1A2E]/60"
-          }`}
-        >
-          We&apos;ll reach out when your access is ready.
-        </p>
+      <div className="success-box">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="10" fill="rgba(52,211,153,0.15)" />
+          <path d="M6 10l3 3 5-5" stroke="#34d399" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        <span>You&apos;re on the list. We&apos;ll be in touch.</span>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
-      <div className="flex flex-col sm:flex-row gap-3">
+    <form onSubmit={handleSubmit}>
+      <div className="form-row">
         <input
           type="email"
           required
+          className="email-input"
           placeholder="you@company.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={status === "loading"}
-          className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium outline-none transition-all border focus:ring-2 disabled:opacity-60 ${
-            inverted
-              ? "bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:ring-[#E05C2A]/50 focus:border-[#E05C2A]/60"
-              : "bg-white border-[#1A1A2E]/15 text-[#1A1A2E] placeholder:text-[#1A1A2E]/40 focus:ring-[#E05C2A]/30 focus:border-[#E05C2A]/50"
-          }`}
+          aria-label="Work email address"
         />
-        <button
-          type="submit"
-          disabled={status === "loading" || !email}
-          className="bg-[#E05C2A] text-white font-bold text-sm px-6 py-3 rounded-xl hover:opacity-90 active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
-        >
+        <button type="submit" className="btn-primary" disabled={status === "loading"}>
           {status === "loading" ? (
-            <span className="flex items-center gap-2">
-              <svg
-                className="animate-spin w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8v8z"
-                />
+            <>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ animation: "spin 0.8s linear infinite" }} aria-hidden="true">
+                <circle cx="8" cy="8" r="6" stroke="currentColor" strokeOpacity="0.3" strokeWidth="2" />
+                <path d="M14 8a6 6 0 00-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
               </svg>
-              Joining…
-            </span>
+              Joining...
+            </>
           ) : (
             "Start building free"
           )}
         </button>
       </div>
-
       {status === "error" && (
-        <p className={`text-sm mt-2 ${inverted ? "text-red-300" : "text-red-600"}`}>
+        <p style={{ marginTop: "0.5rem", fontSize: "0.875rem", color: "var(--red)" }}>
           {errorMsg}
         </p>
       )}
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+      `}</style>
     </form>
   );
 }

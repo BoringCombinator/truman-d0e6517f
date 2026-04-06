@@ -1,14 +1,36 @@
 import type { Metadata } from "next";
+import { Syne, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Truman — Full Browser Automation Stack, One API Call",
+  title: "Truman — One API call. Full browser automation stack.",
   description:
-    "Truman bundles browsers, proxies, AI models, scheduling, and file management into one isolated environment per user. Spin it up with a single API call. Free trial, no credit card required.",
+    "Isolated browser environments with built-in proxies, AI models, and scheduling. Stop babysitting Docker containers.",
   openGraph: {
-    title: "Truman — Full Browser Automation Stack, One API Call",
+    title: "Truman — One API call. Full browser automation stack.",
     description:
-      "Truman bundles browsers, proxies, AI models, scheduling, and file management into one isolated environment per user. Spin it up with a single API call.",
+      "Isolated browser environments with built-in proxies, AI models, and scheduling.",
     type: "website",
   },
 };
@@ -20,7 +42,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className={`${syne.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

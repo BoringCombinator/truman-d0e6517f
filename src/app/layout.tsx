@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Truman — Full browser automation stack, one API call",
+  title: "Truman — Browser Automation Without the Infrastructure Headache",
   description:
-    "Isolated browser environments with built-in proxies, AI models, and scheduling. Stop managing infrastructure. Start shipping. Free trial, no credit card required.",
+    "One API call gives you isolated Chrome instances, residential proxies, multi-provider AI, and scheduling. Stop managing the stack. Start shipping.",
   openGraph: {
-    title: "Truman — Full browser automation stack, one API call",
+    title: "Truman — Browser Automation Without the Infrastructure Headache",
     description:
-      "Isolated browser environments with built-in proxies, AI models, and scheduling. Stop managing infrastructure. Start shipping.",
+      "One API call gives you isolated Chrome instances, residential proxies, multi-provider AI, and scheduling. Stop managing the stack. Start shipping.",
     type: "website",
   },
 };

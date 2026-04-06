@@ -2,20 +2,14 @@
 
 import { useState } from "react";
 
-interface WaitlistFormProps {
-  variant?: "dark" | "light";
-}
-
-export default function WaitlistForm({ variant = "dark" }: WaitlistFormProps) {
+export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const isLight = variant === "light";
-
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!email || status === "loading") return;
+    if (!email) return;
 
     setStatus("loading");
     setErrorMessage("");
@@ -28,32 +22,27 @@ export default function WaitlistForm({ variant = "dark" }: WaitlistFormProps) {
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data?.message || "Something went wrong. Try again.");
+        throw new Error("Something went wrong. Please try again.");
       }
 
       setStatus("success");
       setEmail("");
     } catch (err) {
       setStatus("error");
-      setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Try again.");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong."
+      );
     }
   }
 
   if (status === "success") {
     return (
-      <div
-        className={`flex items-center gap-3 px-5 py-4 rounded-2xl border ${
-          isLight
-            ? "bg-white/20 border-white/30 text-white"
-            : "bg-green-50 border-green-200 text-green-800"
-        }`}
-      >
-        <span className="text-xl">🎉</span>
+      <div className="flex items-center gap-3 bg-[#1A1A2E] text-white rounded-xl px-5 py-4">
+        <span className="text-[#E8C547] text-xl">✓</span>
         <div>
-          <p className="font-bold text-sm">You're on the list!</p>
-          <p className={`text-xs mt-0.5 ${isLight ? "text-white/70" : "text-green-600"}`}>
-            We'll reach out when your free instances are ready.
+          <p className="font-bold text-sm">You're on the list.</p>
+          <p className="text-white/50 text-xs mt-0.5">
+            We'll reach out when your access is ready.
           </p>
         </div>
       </div>
@@ -62,37 +51,27 @@ export default function WaitlistForm({ variant = "dark" }: WaitlistFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <div className="flex flex-col sm:flex-row gap-3">
+      <div className="flex flex-col sm:flex-row gap-2">
         <input
           type="email"
           required
           value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (status === "error") setStatus("idle");
-          }}
-          placeholder="your@email.com"
-          className={`flex-1 px-5 py-3.5 rounded-full text-sm font-medium outline-none transition-all border-2 ${
-            isLight
-              ? "bg-white text-[#1A1A2E] placeholder-[#1A1A2E]/40 border-transparent focus:border-white"
-              : "bg-white text-[#1A1A2E] placeholder-[#1A1A2E]/40 border-transparent focus:border-[#E85A2F]"
-          } ${status === "error" ? "border-red-400" : ""}`}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@company.com"
+          disabled={status === "loading"}
+          className="flex-1 bg-white border border-[#1A1A2E]/15 text-[#1A1A2E] placeholder-[#1A1A2E]/35 rounded-xl px-4 py-3 text-sm font-medium outline-none focus:border-[#E8C547] focus:ring-2 focus:ring-[#E8C547]/30 transition-all disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={status === "loading" || !email}
-          className={`px-6 py-3.5 rounded-full text-sm font-bold transition-all whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed ${
-            isLight
-              ? "bg-[#1A1A2E] text-white hover:bg-[#2a2a3e]"
-              : "bg-[#E85A2F] text-white hover:bg-[#d04e26]"
-          }`}
+          className="bg-[#E8C547] text-[#1A1A2E] font-bold text-sm px-5 py-3 rounded-xl hover:brightness-95 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
         >
           {status === "loading" ? (
             <span className="flex items-center gap-2">
               <svg
                 className="animate-spin w-4 h-4"
-                viewBox="0 0 24 24"
                 fill="none"
+                viewBox="0 0 24 24"
               >
                 <circle
                   className="opacity-25"
@@ -108,18 +87,15 @@ export default function WaitlistForm({ variant = "dark" }: WaitlistFormProps) {
                   d="M4 12a8 8 0 018-8v8H4z"
                 />
               </svg>
-              Joining…
+              Joining...
             </span>
           ) : (
-            "Start building free"
+            "Start building free →"
           )}
         </button>
       </div>
-
       {status === "error" && (
-        <p className={`text-xs mt-2.5 font-medium ${isLight ? "text-white/80" : "text-red-500"}`}>
-          ⚠ {errorMessage}
-        </p>
+        <p className="text-red-500 text-xs mt-2 font-medium">{errorMessage}</p>
       )}
     </form>
   );

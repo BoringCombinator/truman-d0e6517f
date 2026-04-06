@@ -2,348 +2,342 @@ import WaitlistForm from "@/components/waitlist-form";
 
 const valueProps = [
   {
-    title: "Full Stack, One Call",
+    title: "Everything in one call",
     description:
-      "Spin up isolated Docker containers with concurrent Chrome instances, residential proxies, and multi-provider LLM access in a single API call — no YAML files, no manual provisioning.",
+      "Spin up isolated Docker containers with concurrent Chrome instances, residential proxies, and multi-provider LLM access in a single API request — no config files, no setup scripts.",
     icon: "⚡",
   },
   {
-    title: "Cut Infra Bills in Half",
+    title: "Cut infra costs in half",
     description:
-      "Teams switching from self-managed VPS, proxy pools, and separate LLM subscriptions consistently save 50%+ per month and get back 3 to 4 hours a day they were burning on ops.",
+      "Teams switching from self-managed VPS, proxy pools, and separate LLM APIs typically cut monthly spend by 50% or more, and get back 3 to 4 hours a day they were spending on manual ops.",
     icon: "📉",
   },
   {
-    title: "Switch LLMs Per Task",
+    title: "Swap LLMs per task",
     description:
-      "Route Claude for long-form reasoning, GPT for quick hits — all through one endpoint, no config changes, no redeployment.",
+      "Route Claude for long-form reasoning, GPT for quick responses, or any other provider — all through one endpoint, no code changes, no credential juggling.",
     icon: "🔀",
   },
 ];
 
-const stackItems = [
-  { label: "Browsers", detail: "Isolated Chrome instances per user" },
-  { label: "Proxies", detail: "Residential proxy pools, built-in" },
-  { label: "AI Models", detail: "Multi-provider LLM routing" },
-  { label: "Scheduling", detail: "Cron and event-based triggers" },
-  { label: "File Management", detail: "Persistent storage per session" },
+const stackComparison = [
+  { label: "Anti-detect browsers", them: "Profiles only", us: "✓" },
+  { label: "Headless Chrome", them: "Limited", us: "✓" },
+  { label: "Residential proxies", them: "Separate vendor", us: "✓" },
+  { label: "AI models (multi-provider)", them: "DIY", us: "✓" },
+  { label: "Scheduling", them: "Roll your own", us: "✓" },
+  { label: "File management", them: "S3 + glue code", us: "✓" },
+  { label: "Isolated per user", them: "Complex config", us: "✓" },
 ];
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-[#F5F4F0] text-[#1A1A2E]">
+    <main className="min-h-screen bg-[#F5F3EE] text-[#1A1A2E]">
       {/* Nav */}
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <span className="text-xl font-black tracking-tight text-[#1A1A2E]">
-          Truman
-        </span>
-        <a
-          href="#waitlist"
-          className="rounded-full bg-[#E8500A] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#c94208]"
-        >
-          Start free
-        </a>
+      <nav className="sticky top-0 z-50 bg-[#F5F3EE]/90 backdrop-blur-sm border-b border-[#1A1A2E]/8">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <span className="font-black text-xl tracking-tight text-[#1A1A2E]">
+            Truman
+          </span>
+          <a
+            href="#waitlist"
+            className="text-sm font-semibold bg-[#E85A2F] text-white px-4 py-2 rounded-full hover:bg-[#d04e26] transition-colors"
+          >
+            Start free →
+          </a>
+        </div>
       </nav>
 
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pb-24 pt-16 md:pt-28">
-        <div className="max-w-3xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1A1A2E]/15 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#E8500A]">
-            Browser Automation Infrastructure
+      <section className="max-w-6xl mx-auto px-6 pt-20 pb-24 md:pt-28 md:pb-32">
+        <div className="max-w-4xl">
+          <div className="inline-flex items-center gap-2 bg-[#1A1A2E] text-[#E85A2F] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8">
+            <span className="w-1.5 h-1.5 bg-[#E85A2F] rounded-full animate-pulse"></span>
+            Early access — free to start
           </div>
-          <h1 className="mb-6 text-5xl font-black leading-[1.05] tracking-tight text-[#1A1A2E] md:text-7xl">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6">
             One API call.{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10">Full browser</span>
-              <span
-                className="absolute bottom-1 left-0 z-0 h-3 w-full opacity-30"
-                style={{ background: "#E8500A" }}
-              />
-            </span>{" "}
+            <span className="text-[#E85A2F]">Full browser</span>{" "}
             automation stack.
           </h1>
-          <p className="mb-10 max-w-2xl text-lg leading-relaxed text-[#1A1A2E]/70 md:text-xl">
-            Stop gluing together VPS instances, proxy pools, and LLM configs by
-            hand. Truman gives every user isolated browsers, residential
-            proxies, AI, and scheduling — bundled, managed, and ready to go.
+          <p className="text-lg md:text-xl text-[#1A1A2E]/70 leading-relaxed max-w-2xl mb-10">
+            Stop duct-taping VPS instances, proxy pools, and LLM APIs together.
+            Truman gives you isolated browser environments with proxies, AI, and
+            scheduling built in — ready in seconds, not days.
           </p>
+
           <div id="waitlist" className="max-w-md">
             <WaitlistForm />
+            <p className="text-xs text-[#1A1A2E]/40 mt-3">
+              No credit card required. 3 free browser instances to start.
+            </p>
           </div>
-          <p className="mt-3 text-xs text-[#1A1A2E]/40">
-            Free tier includes 3 browser instances. No credit card required.
-          </p>
         </div>
 
-        {/* Code snippet hero visual */}
-        <div className="mt-16 rounded-2xl border border-[#1A1A2E]/10 bg-[#1A1A2E] p-6 font-mono text-sm text-white shadow-2xl md:mt-20">
-          <div className="mb-4 flex gap-1.5">
-            <span className="h-3 w-3 rounded-full bg-red-400" />
-            <span className="h-3 w-3 rounded-full bg-yellow-400" />
-            <span className="h-3 w-3 rounded-full bg-green-400" />
-          </div>
-          <div className="overflow-x-auto">
-            <pre className="text-sm leading-7">
-              <span className="text-[#E8500A]">const</span>{" "}
-              <span className="text-white">session</span>{" "}
-              <span className="text-[#E8500A]">=</span>{" "}
-              <span className="text-[#7dd3fc]">await</span>{" "}
-              <span className="text-white">truman</span>
-              <span className="text-[#E8500A]/80">.</span>
-              <span className="text-[#86efac]">create</span>
-              <span className="text-white">({"{"}</span>
-              {"\n"}
-              {"  "}
-              <span className="text-[#fde68a]">browser</span>
-              <span className="text-white">:</span>{" "}
-              <span className="text-[#86efac]">&quot;chrome&quot;</span>
-              <span className="text-white">,</span>
-              {"\n"}
-              {"  "}
-              <span className="text-[#fde68a]">proxy</span>
-              <span className="text-white">:</span>{" "}
-              <span className="text-[#86efac]">&quot;residential&quot;</span>
-              <span className="text-white">,</span>
-              {"\n"}
-              {"  "}
-              <span className="text-[#fde68a]">llm</span>
-              <span className="text-white">:</span>{" "}
-              <span className="text-[#86efac]">&quot;claude-3-5-sonnet&quot;</span>
-              <span className="text-white">,</span>
-              {"\n"}
-              {"  "}
-              <span className="text-[#fde68a]">schedule</span>
-              <span className="text-white">:</span>{" "}
-              <span className="text-[#86efac]">&quot;*/15 * * * *&quot;</span>
-              <span className="text-white">,</span>
-              {"\n"}
-              {"  "}
-              <span className="text-[#fde68a]">userId</span>
-              <span className="text-white">:</span>{" "}
-              <span className="text-[#86efac]">&quot;user_abc123&quot;</span>
-              {"\n"}
-              <span className="text-white">{"})"};</span>
-              {"\n\n"}
-              <span className="text-[#1A1A2E]/40">
-                {"// "}
+        {/* Code snippet */}
+        <div className="mt-16 max-w-2xl">
+          <div className="bg-[#1A1A2E] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="flex items-center gap-2 px-5 py-3 border-b border-white/10">
+              <div className="w-3 h-3 rounded-full bg-red-500/70"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500/70"></div>
+              <span className="ml-2 text-white/30 text-xs font-mono">
+                truman.js
               </span>
-              <span className="text-[#E8500A]/70">
-                Isolated browser + proxy + AI + scheduler. Done.
-              </span>
+            </div>
+            <pre className="p-6 text-sm font-mono overflow-x-auto leading-relaxed">
+              <code>
+                <span className="text-[#E85A2F]">const</span>
+                <span className="text-white"> session </span>
+                <span className="text-[#E85A2F]">=</span>
+                <span className="text-white"> await truman.</span>
+                <span className="text-green-400">spawn</span>
+                <span className="text-white">{"({"}</span>
+                {"\n"}
+                <span className="text-white">{"  "}</span>
+                <span className="text-blue-300">proxy</span>
+                <span className="text-white">{": "}</span>
+                <span className="text-yellow-300">"residential"</span>
+                <span className="text-white">,</span>
+                {"\n"}
+                <span className="text-white">{"  "}</span>
+                <span className="text-blue-300">llm</span>
+                <span className="text-white">{": "}</span>
+                <span className="text-yellow-300">"claude-3-5-sonnet"</span>
+                <span className="text-white">,</span>
+                {"\n"}
+                <span className="text-white">{"  "}</span>
+                <span className="text-blue-300">schedule</span>
+                <span className="text-white">{": "}</span>
+                <span className="text-yellow-300">"*/15 * * * *"</span>
+                <span className="text-white">,</span>
+                {"\n"}
+                <span className="text-white">{"  "}</span>
+                <span className="text-blue-300">isolated</span>
+                <span className="text-white">{": "}</span>
+                <span className="text-purple-400">true</span>
+                {"\n"}
+                <span className="text-white">{"});"}</span>
+                {"\n\n"}
+                <span className="text-white/40">
+                  {"// That's it. Browser + proxy + AI + schedule."}
+                </span>
+              </code>
             </pre>
           </div>
         </div>
       </section>
 
-      {/* Value Props */}
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-4 text-xs font-bold uppercase tracking-widest text-[#E8500A]">
-            Why teams switch
-          </div>
-          <h2 className="mb-16 max-w-xl text-3xl font-black tracking-tight text-[#1A1A2E] md:text-4xl">
-            Built for teams who build, not babysit.
-          </h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {valueProps.map((vp) => (
-              <div
-                key={vp.title}
-                className="group rounded-2xl border border-[#1A1A2E]/8 bg-[#F5F4F0] p-8 transition hover:border-[#E8500A]/30 hover:shadow-lg"
-              >
-                <div className="mb-5 text-4xl">{vp.icon}</div>
-                <h3 className="mb-3 text-lg font-black tracking-tight text-[#1A1A2E]">
-                  {vp.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-[#1A1A2E]/60">
-                  {vp.description}
-                </p>
-              </div>
-            ))}
+      {/* Social proof bar */}
+      <section className="border-y border-[#1A1A2E]/10 bg-[#1A1A2E]/4 py-5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-wrap items-center gap-8 justify-center md:justify-start text-sm text-[#1A1A2E]/50 font-medium">
+            <span>Built for:</span>
+            <span className="text-[#1A1A2E]/70">AI developers</span>
+            <span className="text-[#1A1A2E]/20">·</span>
+            <span className="text-[#1A1A2E]/70">Ops teams</span>
+            <span className="text-[#1A1A2E]/20">·</span>
+            <span className="text-[#1A1A2E]/70">Web scrapers</span>
+            <span className="text-[#1A1A2E]/20">·</span>
+            <span className="text-[#1A1A2E]/70">Social media managers</span>
+            <span className="text-[#1A1A2E]/20">·</span>
+            <span className="text-[#1A1A2E]/70">Competitive intel teams</span>
           </div>
         </div>
       </section>
 
-      {/* Differentiation / Stack */}
-      <section className="py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-            <div>
-              <div className="mb-4 text-xs font-bold uppercase tracking-widest text-[#E8500A]">
-                What makes Truman different
-              </div>
-              <h2 className="mb-6 text-3xl font-black tracking-tight text-[#1A1A2E] md:text-4xl">
-                Nobody else bundles all five.
-              </h2>
-              <p className="mb-8 leading-relaxed text-[#1A1A2E]/65">
-                Anti-detect browsers give you profiles. Browserbase gives you
-                headless Chrome. Truman gives you everything: browsers,
-                proxies, AI, scheduling, and file management — isolated per
-                user, controlled through one API.
-              </p>
-              <p className="text-sm font-semibold text-[#1A1A2E]/50">
-                Perfect for AI devs and ops teams running social monitoring,
-                data collection, and competitive intel at scale — who are tired
-                of babysitting infrastructure instead of shipping product.
+      {/* Value Props */}
+      <section className="max-w-6xl mx-auto px-6 py-24">
+        <div className="mb-14">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-3">
+            Why teams switch to Truman
+          </h2>
+          <p className="text-[#1A1A2E]/60 text-lg">
+            Less glue code. More shipping.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {valueProps.map((prop, i) => (
+            <div
+              key={i}
+              className="bg-white border border-[#1A1A2E]/8 rounded-2xl p-8 hover:border-[#E85A2F]/40 hover:shadow-lg transition-all duration-200 group"
+            >
+              <div className="text-3xl mb-5">{prop.icon}</div>
+              <h3 className="text-lg font-black mb-3 group-hover:text-[#E85A2F] transition-colors">
+                {prop.title}
+              </h3>
+              <p className="text-[#1A1A2E]/60 leading-relaxed text-sm">
+                {prop.description}
               </p>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div className="flex flex-col gap-3">
-              {stackItems.map((item, i) => (
+      {/* Differentiation / Comparison */}
+      <section className="bg-[#1A1A2E] text-white py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="text-[#E85A2F] text-xs font-bold uppercase tracking-widest mb-4">
+                The full stack
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-6 leading-tight">
+                Nobody else bundles all five.
+              </h2>
+              <p className="text-white/60 leading-relaxed mb-8">
+                Anti-detect browsers give you profiles. Browserbase gives you
+                headless Chrome. Truman gives you the whole thing: browsers,
+                residential proxies, AI models, scheduling, and file management
+                — isolated per user, controlled through a single API.
+              </p>
+              <a
+                href="#waitlist"
+                className="inline-flex items-center gap-2 bg-[#E85A2F] text-white font-bold px-6 py-3 rounded-full hover:bg-[#d04e26] transition-colors"
+              >
+                Get early access →
+              </a>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-3 text-xs font-bold uppercase tracking-widest text-white/40 px-6 py-4 border-b border-white/10">
+                <span className="col-span-1">Feature</span>
+                <span className="text-center">Others</span>
+                <span className="text-center text-[#E85A2F]">Truman</span>
+              </div>
+              {stackComparison.map((row, i) => (
                 <div
-                  key={item.label}
-                  className="flex items-center justify-between rounded-xl border border-[#1A1A2E]/8 bg-white px-6 py-5 shadow-sm"
+                  key={i}
+                  className="grid grid-cols-3 px-6 py-4 border-b border-white/5 last:border-0 hover:bg-white/3 transition-colors"
                 >
-                  <div className="flex items-center gap-4">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E8500A] text-xs font-black text-white">
-                      {i + 1}
-                    </span>
-                    <span className="font-black text-[#1A1A2E]">
-                      {item.label}
-                    </span>
-                  </div>
-                  <span className="text-right text-xs text-[#1A1A2E]/50">
-                    {item.detail}
+                  <span className="text-sm text-white/80 font-medium">
+                    {row.label}
+                  </span>
+                  <span className="text-center text-sm text-white/30">
+                    {row.them}
+                  </span>
+                  <span className="text-center text-sm text-[#E85A2F] font-bold">
+                    {row.us}
                   </span>
                 </div>
               ))}
-              <div className="mt-2 rounded-xl border border-[#E8500A]/30 bg-[#E8500A]/5 px-6 py-4 text-center">
-                <span className="text-sm font-bold text-[#E8500A]">
-                  All five. One API endpoint. Isolated per user.
-                </span>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Pricing */}
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-4 text-xs font-bold uppercase tracking-widest text-[#E8500A]">
+      <section className="max-w-6xl mx-auto px-6 py-24">
+        <div className="text-center mb-14">
+          <div className="text-[#E85A2F] text-xs font-bold uppercase tracking-widest mb-4">
             Pricing
           </div>
-          <h2 className="mb-16 text-3xl font-black tracking-tight text-[#1A1A2E] md:text-4xl">
-            Start free. Scale when you&apos;re ready.
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-3">
+            Start free. Scale when ready.
           </h2>
+          <p className="text-[#1A1A2E]/60 text-lg max-w-xl mx-auto">
+            Pay for what you actually run. No surprise bills from idle infra.
+          </p>
+        </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {/* Free */}
-            <div className="rounded-2xl border border-[#1A1A2E]/10 bg-[#F5F4F0] p-8">
-              <div className="mb-2 text-xs font-bold uppercase tracking-widest text-[#1A1A2E]/40">
-                Free
-              </div>
-              <div className="mb-6 text-4xl font-black text-[#1A1A2E]">$0</div>
-              <ul className="mb-8 space-y-3 text-sm text-[#1A1A2E]/70">
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> 3 browser instances
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> Validate your workflow
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> No credit card needed
-                </li>
-              </ul>
-              <span className="text-xs font-semibold text-[#1A1A2E]/40">
-                Get started today
-              </span>
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {/* Free tier */}
+          <div className="bg-white border-2 border-[#1A1A2E]/10 rounded-2xl p-8">
+            <div className="text-xs font-bold uppercase tracking-widest text-[#1A1A2E]/40 mb-4">
+              Free tier
             </div>
+            <div className="text-4xl font-black mb-1">$0</div>
+            <p className="text-[#1A1A2E]/50 text-sm mb-6">Forever free</p>
+            <ul className="space-y-3 text-sm">
+              {["3 browser instances", "Validate your workflow", "Full API access", "No credit card required"].map(
+                (item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="w-5 h-5 rounded-full bg-[#1A1A2E]/8 flex items-center justify-center text-xs">
+                      ✓
+                    </span>
+                    <span className="text-[#1A1A2E]/70">{item}</span>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
 
-            {/* Pro */}
-            <div className="relative rounded-2xl border-2 border-[#E8500A] bg-[#1A1A2E] p-8 text-white shadow-xl">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#E8500A] px-4 py-1 text-xs font-black uppercase tracking-wider text-white">
-                Most Popular
-              </div>
-              <div className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">
-                Pro
-              </div>
-              <div className="mb-1 text-4xl font-black text-white">$79</div>
-              <div className="mb-6 text-sm text-white/40">/month</div>
-              <ul className="mb-8 space-y-3 text-sm text-white/75">
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> 20 browser instances
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> 5 proxy lines
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> 100K LLM tokens
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> Scheduling included
-                </li>
-              </ul>
-              <span className="text-xs font-semibold text-white/40">
-                ~50% less than DIY
-              </span>
+          {/* Growth tier */}
+          <div className="bg-[#1A1A2E] text-white rounded-2xl p-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-[#E85A2F] text-white text-xs font-bold px-4 py-2 rounded-bl-xl">
+              Most popular
             </div>
-
-            {/* Scale */}
-            <div className="rounded-2xl border border-[#1A1A2E]/10 bg-[#F5F4F0] p-8">
-              <div className="mb-2 text-xs font-bold uppercase tracking-widest text-[#1A1A2E]/40">
-                Scale
-              </div>
-              <div className="mb-1 text-4xl font-black text-[#1A1A2E]">
-                Usage
-              </div>
-              <div className="mb-6 text-sm text-[#1A1A2E]/40">-based</div>
-              <ul className="mb-8 space-y-3 text-sm text-[#1A1A2E]/70">
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> Unlimited instances
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> Pay for what you use
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[#E8500A]">✓</span> Volume discounts
-                </li>
-              </ul>
-              <span className="text-xs font-semibold text-[#1A1A2E]/40">
-                Grows with you
-              </span>
+            <div className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+              Growth
             </div>
+            <div className="text-4xl font-black mb-1">$79</div>
+            <p className="text-white/40 text-sm mb-6">per month</p>
+            <ul className="space-y-3 text-sm">
+              {[
+                "20 browser instances",
+                "5 residential proxy lines",
+                "100K LLM tokens",
+                "Usage-based above that",
+                "Priority support",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <span className="w-5 h-5 rounded-full bg-[#E85A2F]/20 flex items-center justify-center text-xs text-[#E85A2F]">
+                    ✓
+                  </span>
+                  <span className="text-white/70">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+
+        <p className="text-center text-[#1A1A2E]/40 text-sm mt-8">
+          Enterprise? Custom proxy pools, dedicated infra, SLAs.{" "}
+          <a href="mailto:hello@truman.dev" className="underline hover:text-[#E85A2F] transition-colors">
+            Let's talk.
+          </a>
+        </p>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#1A1A2E] py-28">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#E8500A]">
-            Early Access
-          </div>
-          <h2 className="mb-6 text-4xl font-black tracking-tight text-white md:text-5xl">
-            Start building free.
+      {/* Final CTA */}
+      <section className="bg-[#E85A2F] py-24">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Stop managing infra.
             <br />
-            Ship faster.
+            Start shipping.
           </h2>
-          <p className="mb-10 text-lg text-white/50">
-            Join the waitlist and be first to get access. 3 browser instances
-            free, no credit card required.
+          <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">
+            Free trial, no credit card required. Get 3 browser instances and
+            start automating in minutes.
           </p>
-          <div className="mx-auto max-w-md">
-            <WaitlistForm dark />
+          <div className="max-w-md mx-auto">
+            <WaitlistForm variant="light" />
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[#1A1A2E]/10 bg-[#F5F4F0] px-6 py-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
-          <span className="text-lg font-black tracking-tight text-[#1A1A2E]">
-            Truman
-          </span>
-          <p className="text-xs text-[#1A1A2E]/40">
-            Browsers, proxies, AI, scheduling — one API.
-          </p>
+      <footer className="border-t border-[#1A1A2E]/10 py-10">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="font-black text-[#1A1A2E]">Truman</span>
+            <span className="text-[#1A1A2E]/20">·</span>
+            <span className="text-[#1A1A2E]/40 text-sm">
+              Full browser automation stack
+            </span>
+          </div>
+
           <a
             href="https://boringcombinator.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#1A1A2E]/10 bg-white px-4 py-2 text-xs font-semibold text-[#1A1A2E]/50 transition hover:text-[#1A1A2E]"
+            className="inline-flex items-center gap-2 bg-[#1A1A2E]/5 hover:bg-[#1A1A2E]/10 transition-colors text-[#1A1A2E]/50 text-xs font-medium px-4 py-2 rounded-full"
           >
             <span>🥱</span>
-            Built with Boring Combinator
+            <span>Built with Boring Combinator</span>
           </a>
         </div>
       </footer>

@@ -2,8 +2,8 @@
 
 :root {
   --color-primary: #1A1A2E;
-  --color-accent: #E8500A;
-  --color-bg: #F5F4F0;
+  --color-accent: #E85A2F;
+  --color-bg: #F5F3EE;
   --color-text: #1A1A2E;
 }
 
@@ -11,14 +11,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -34,12 +30,15 @@ body {
     "Helvetica Neue",
     Arial,
     sans-serif;
-  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
 }
 
 ::selection {
-  background-color: var(--color-accent);
-  color: #fff;
+  background-color: #E85A2F;
+  color: #ffffff;
 }
 
 :focus-visible {

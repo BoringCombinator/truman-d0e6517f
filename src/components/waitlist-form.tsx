@@ -2,20 +2,14 @@
 
 import { useState } from "react";
 
-interface WaitlistFormProps {
-  theme?: "dark" | "light";
-}
-
-export default function WaitlistForm({ theme = "dark" }: WaitlistFormProps) {
+export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const isLight = theme === "light";
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email || status === "loading") return;
+    if (!email.trim()) return;
 
     setStatus("loading");
     setErrorMsg("");
@@ -28,102 +22,137 @@ export default function WaitlistForm({ theme = "dark" }: WaitlistFormProps) {
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data?.message || "Something went wrong. Try again.");
+        throw new Error(`Server returned ${res.status}`);
       }
 
       setStatus("success");
       setEmail("");
-    } catch (err) {
+    } catch {
       setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Try again.");
+      setErrorMsg("Something went wrong. Try again.");
     }
   }
 
   if (status === "success") {
     return (
       <div
-        className={`rounded-xl px-6 py-5 flex items-start gap-3 ${
-          isLight
-            ? "bg-white/20 border border-white/30"
-            : "bg-[#1A1A2E]/5 border border-[#1A1A2E]/15"
-        }`}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+          padding: "16px 24px",
+          background: "rgba(0, 212, 170, 0.08)",
+          border: "1px solid rgba(0, 212, 170, 0.3)",
+          borderRadius: "8px",
+          fontFamily: "var(--font-mono)",
+          fontSize: "0.85rem",
+          color: "var(--accent)",
+        }}
       >
-        <span className="text-2xl mt-0.5">🎉</span>
-        <div>
-          <p className={`font-bold text-sm ${isLight ? "text-white" : "text-[#1A1A2E]"}`}>
-            You're on the list!
-          </p>
-          <p className={`text-sm mt-0.5 ${isLight ? "text-white/70" : "text-[#1A1A2E]/60"}`}>
-            We'll reach out as soon as your spot is ready.
-          </p>
-        </div>
+        <span className="status-dot" />
+        <span>You&apos;re in. We&apos;ll be in touch soon.</span>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-      <div className="flex-1">
-        <input
-          type="email"
-          required
-          placeholder="you@company.com"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (status === "error") setStatus("idle");
+    <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+          width: "100%",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+            flexWrap: "wrap",
+            width: "100%",
           }}
-          className={`w-full rounded-xl px-4 py-3.5 text-sm outline-none transition-all duration-200 ${
-            isLight
-              ? "bg-white/20 border border-white/40 text-white placeholder:text-white/50 focus:border-white focus:bg-white/30"
-              : "bg-white border border-[#1A1A2E]/15 text-[#1A1A2E] placeholder:text-[#1A1A2E]/35 focus:border-[#E84E2A] focus:ring-2 focus:ring-[#E84E2A]/15"
-          }`}
-          disabled={status === "loading"}
-        />
+        >
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@company.com"
+            required
+            style={{
+              flex: "1 1 220px",
+              padding: "12px 16px",
+              background: "var(--bg-3)",
+              border: "1px solid var(--border-2)",
+              borderRadius: "6px",
+              color: "var(--text)",
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.85rem",
+              outline: "none",
+              transition: "border-color 0.2s, box-shadow 0.2s",
+              minWidth: "0",
+            }}
+            onFocus={(e) => {
+              e.target.style.borderColor = "var(--accent)";
+              e.target.style.boxShadow = "0 0 0 3px var(--accent-glow)";
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = "var(--border-2)";
+              e.target.style.boxShadow = "none";
+            }}
+          />
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            style={{
+              padding: "12px 24px",
+              background: status === "loading" ? "var(--accent-dim)" : "var(--accent)",
+              border: "none",
+              borderRadius: "6px",
+              color: "#07080c",
+              fontFamily: "var(--font-display)",
+              fontWeight: 700,
+              fontSize: "0.9rem",
+              cursor: status === "loading" ? "wait" : "pointer",
+              whiteSpace: "nowrap",
+              transition: "background 0.2s, transform 0.15s",
+              letterSpacing: "0.02em",
+            }}
+            onMouseEnter={(e) => {
+              if (status !== "loading") {
+                (e.target as HTMLButtonElement).style.transform = "translateY(-1px)";
+              }
+            }}
+            onMouseLeave={(e) => {
+              (e.target as HTMLButtonElement).style.transform = "translateY(0)";
+            }}
+          >
+            {status === "loading" ? "Joining..." : "Start building free"}
+          </button>
+        </div>
+
         {status === "error" && (
-          <p className={`text-xs mt-2 ${isLight ? "text-white/80" : "text-[#E84E2A]"}`}>
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.78rem",
+              color: "var(--red)",
+            }}
+          >
             {errorMsg}
           </p>
         )}
-      </div>
 
-      <button
-        type="submit"
-        disabled={status === "loading" || !email}
-        className={`shrink-0 rounded-xl px-6 py-3.5 text-sm font-bold transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed ${
-          isLight
-            ? "bg-white text-[#E84E2A] hover:bg-[#F5F2EE] active:scale-[0.98]"
-            : "bg-[#E84E2A] text-white hover:bg-[#d1421e] active:scale-[0.98]"
-        }`}
-      >
-        {status === "loading" ? (
-          <span className="flex items-center gap-2">
-            <svg
-              className="animate-spin w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8H4z"
-              />
-            </svg>
-            Joining...
-          </span>
-        ) : (
-          "Start building free"
-        )}
-      </button>
+        <p
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.72rem",
+            color: "var(--text-muted)",
+          }}
+        >
+          Free trial includes 3 browser instances. No credit card required.
+        </p>
+      </div>
     </form>
   );
 }

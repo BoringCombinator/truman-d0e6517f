@@ -2,25 +2,25 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Truman — Browser Automation Without the Infrastructure Headache",
+  title: "Truman — One API call. Full browser automation stack.",
   description:
-    "Browsers, proxies, AI models, and scheduling in one isolated environment. One API call to spin it all up. Start free, no credit card needed.",
+    "Isolated browser environments with built-in proxies, AI models, and scheduling. Stop babysitting Docker containers.",
   openGraph: {
-    title: "Truman — Browser Automation Without the Infrastructure Headache",
+    title: "Truman — One API call. Full browser automation stack.",
     description:
-      "Browsers, proxies, AI models, and scheduling in one isolated environment. One API call to spin it all up. Start free, no credit card needed.",
+      "Isolated browser environments with built-in proxies, AI models, and scheduling. Stop babysitting Docker containers.",
     type: "website",
   },
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="noise">{children}</body>
     </html>
   );
 }

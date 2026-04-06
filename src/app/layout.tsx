@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Truman — Full browser automation stack in one API call",
+  title: "Truman — Browser Automation With Proxies, AI, and Scheduling Built In",
   description:
-    "Isolated browser environments with built-in proxies, AI models, and scheduling. Stop babysitting Docker containers.",
+    "One API call gives you isolated Chrome instances, residential proxies, and multi-provider LLM access. No more stitching together VPS setups by hand. Start free with 3 browser instances.",
 };
 
 export default function RootLayout({
@@ -14,7 +14,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body
+        style={{
+          fontFamily:
+            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+        }}
+      >
+        {children}
+      </body>
     </html>
   );
 }

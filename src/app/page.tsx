@@ -3,67 +3,54 @@ import WaitlistForm from "@/components/waitlist-form";
 const valueProps = [
   {
     icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M5 12h14M12 5l7 7-7 7" />
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
       </svg>
     ),
-    title: "One call, full stack",
-    body:
-      "Spin up isolated Docker containers with Chrome instances, residential proxies, and multi-provider LLM access. Everything bundled, nothing to stitch together.",
+    title: "Everything in one box",
+    body: "Browsers, residential proxies, LLM access, scheduling, and file management. One user. One container. One API call. No duct tape required.",
   },
   {
     icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
       </svg>
     ),
-    title: "Cut infra costs by 50%+",
-    body:
-      "No more paying separately for VPS, proxy pools, and API credits. Truman bundles all three. Most teams save 3-4 hours of ops work per day on top of that.",
+    title: "Cut infra spend in half",
+    body: "Self-managed VPS + proxy pool + AI APIs adds up fast. Teams typically save 50%+ switching to Truman, plus 3 to 4 hours a day they were spending on maintenance.",
   },
   {
     icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
       </svg>
     ),
-    title: "Pick the right model per task",
-    body:
-      "Use Claude for long-form reasoning, GPT for quick responses, or any other provider. Switch per task through one endpoint. No config files, no env juggling.",
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-      </svg>
-    ),
-    title: "Truly isolated environments",
-    body:
-      "Each user or job gets its own container. No cross-contamination between sessions, no shared IP fingerprints, no noisy neighbors killing your uptime.",
+    title: "Switch AI models per task",
+    body: "Use Claude for long-form reasoning, GPT for fast replies, or any other provider. Swap models per task without touching config files. One endpoint handles all of it.",
   },
 ];
 
 const comparisonItems = [
-  { label: "Anti-detect browsers", them: "Browser profiles", us: true },
-  { label: "Headless Chrome", them: "Chrome only", us: true },
-  { label: "Residential proxies", them: "Sold separately", us: true },
-  { label: "AI model access", them: "Not included", us: true },
-  { label: "Task scheduling", them: "DIY", us: true },
-  { label: "File management", them: "DIY", us: true },
-  { label: "Isolated per-user env", them: "Shared infra", us: true },
+  { feature: "Isolated containers per user", truman: true, antiDetect: false, browserbase: false },
+  { feature: "Residential proxies included", truman: true, antiDetect: false, browserbase: false },
+  { feature: "Multi-provider LLM access", truman: true, antiDetect: false, browserbase: false },
+  { feature: "Task scheduling built in", truman: true, antiDetect: false, browserbase: false },
+  { feature: "File management", truman: true, antiDetect: false, browserbase: false },
+  { feature: "Single API to control everything", truman: true, antiDetect: false, browserbase: false },
 ];
 
-const pricingPlans = [
+const pricingTiers = [
   {
-    name: "Free Trial",
+    name: "Free",
     price: "$0",
-    period: "",
-    description: "See if it fits before you commit.",
-    features: ["3 browser instances", "1 proxy line", "10K LLM tokens", "Community support"],
+    period: "forever",
+    description: "Kick the tires before you commit.",
+    features: [
+      "3 browser instances",
+      "Shared proxy access",
+      "10K LLM tokens/month",
+      "Community support",
+    ],
     cta: "Start free",
     highlight: false,
   },
@@ -71,11 +58,11 @@ const pricingPlans = [
     name: "Starter",
     price: "$79",
     period: "/month",
-    description: "For teams running steady workloads.",
+    description: "For teams running real workflows.",
     features: [
       "20 browser instances",
-      "5 proxy lines",
-      "100K LLM tokens",
+      "5 residential proxy lines",
+      "100K LLM tokens/month",
       "Email support",
       "Usage-based overages",
     ],
@@ -86,298 +73,402 @@ const pricingPlans = [
     name: "Scale",
     price: "Custom",
     period: "",
-    description: "High volume, dedicated infra, SLAs.",
+    description: "For high-volume operations.",
     features: [
       "Unlimited instances",
-      "Custom proxy allocation",
-      "Dedicated LLM quota",
-      "Priority support + SLA",
+      "Dedicated proxy pools",
+      "Custom LLM token limits",
+      "SLA + dedicated support",
+      "Custom integrations",
     ],
     cta: "Talk to us",
     highlight: false,
   },
 ];
 
+function CheckIcon() {
+  return (
+    <svg className="w-4 h-4 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg className="w-4 h-4 text-gray-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen" style={{ backgroundColor: "#0f0f13", color: "#e5e7eb" }}>
       {/* Nav */}
-      <header className="sticky top-0 z-50 border-b border-white/5 bg-gray-950/80 backdrop-blur-md">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-          <span className="text-white font-bold text-lg tracking-tight">
-            Truman
-          </span>
-          <nav className="hidden sm:flex items-center gap-6 text-sm text-gray-400">
-            <a href="#features" className="hover:text-white transition">Features</a>
-            <a href="#comparison" className="hover:text-white transition">Compare</a>
-            <a href="#pricing" className="hover:text-white transition">Pricing</a>
-          </nav>
-          <a
-            href="#waitlist"
-            className="rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 py-2 text-sm font-semibold text-white transition"
-          >
-            Get started
-          </a>
+      <nav className="border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}>
+              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+            </div>
+            <span className="font-semibold text-white text-base tracking-tight">Truman</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <a href="#pricing" className="text-sm text-gray-400 hover:text-white transition-colors hidden sm:block">Pricing</a>
+            <a
+              href="#waitlist"
+              className="text-sm font-medium px-4 py-2 rounded-lg text-white transition-colors"
+              style={{ backgroundColor: "#4f46e5" }}
+            >
+              Get started
+            </a>
+          </div>
         </div>
-      </header>
+      </nav>
 
-      <main className="flex-1">
-        {/* Hero */}
-        <section className="relative overflow-hidden pt-24 pb-20 sm:pt-32 sm:pb-28 px-4 sm:px-6">
-          {/* Background glow */}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <div className="h-[600px] w-[600px] rounded-full bg-indigo-600/10 blur-3xl" />
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        {/* Background glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.15), transparent)",
+          }}
+        />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center relative">
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"
+            style={{ backgroundColor: "rgba(99,102,241,0.12)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.25)" }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+            Now in early access
           </div>
 
-          <div className="relative mx-auto max-w-4xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-xs font-medium text-indigo-300 mb-8">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-              </span>
-              Now in early access
-            </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6 max-w-4xl mx-auto">
+            One API call.{" "}
+            <span style={{ background: "linear-gradient(135deg, #818cf8, #c084fc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              Full browser automation stack.
+            </span>
+          </h1>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
-              One API call.{" "}
-              <span className="text-indigo-400">Full browser automation stack.</span>
-            </h1>
+          <p className="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Isolated environments with browsers, proxies, AI, and scheduling baked in.
+            Stop wiring together VPS instances and proxy pools by hand.
+          </p>
 
-            <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Isolated browser environments with built-in proxies, AI models, and scheduling.
-              Stop babysitting Docker containers.
-            </p>
-
-            <div className="max-w-lg mx-auto" id="waitlist">
-              <WaitlistForm />
-              <p className="mt-3 text-xs text-gray-600">
-                No credit card needed. Free trial includes 3 browser instances.
-              </p>
-            </div>
+          <div id="waitlist" className="flex justify-center mb-6">
+            <WaitlistForm />
           </div>
-        </section>
 
-        {/* Code snippet */}
-        <section className="px-4 sm:px-6 pb-20">
-          <div className="mx-auto max-w-3xl">
-            <div className="rounded-2xl overflow-hidden border border-white/10 bg-gray-900 shadow-2xl">
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-gray-900">
-                <span className="h-3 w-3 rounded-full bg-red-500/70" />
-                <span className="h-3 w-3 rounded-full bg-yellow-500/70" />
-                <span className="h-3 w-3 rounded-full bg-green-500/70" />
-                <span className="ml-3 text-xs text-gray-500">automate.ts</span>
+          <p className="text-sm text-gray-500">
+            Free plan includes 3 browser instances. No credit card needed.
+          </p>
+
+          {/* Code snippet */}
+          <div className="mt-16 max-w-2xl mx-auto text-left">
+            <div className="rounded-2xl overflow-hidden border" style={{ backgroundColor: "#17171d", borderColor: "rgba(255,255,255,0.07)" }}>
+              <div className="flex items-center gap-1.5 px-4 py-3 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#ef4444" }} />
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#f59e0b" }} />
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#22c55e" }} />
+                <span className="ml-3 text-xs" style={{ color: "#4b5563" }}>truman.ts</span>
               </div>
-              <pre className="p-5 text-sm leading-relaxed overflow-x-auto">
+              <pre className="p-5 text-sm overflow-x-auto leading-relaxed" style={{ fontFamily: "'JetBrains Mono', 'Fira Code', monospace" }}>
                 <code>
-                  <span className="text-gray-500">{"// One call. Everything ready.\n"}</span>
-                  <span className="text-purple-400">const </span>
-                  <span className="text-blue-300">env </span>
-                  <span className="text-gray-300">= </span>
-                  <span className="text-purple-400">await </span>
-                  <span className="text-yellow-300">truman</span>
-                  <span className="text-gray-300">.</span>
-                  <span className="text-blue-400">spawn</span>
-                  <span className="text-gray-300">{"({\n"}</span>
-                  <span className="text-gray-300">{"  "}</span>
-                  <span className="text-green-300">browsers</span>
-                  <span className="text-gray-300">{": "}</span>
-                  <span className="text-orange-300">{"5"}</span>
-                  <span className="text-gray-300">{",\n"}</span>
-                  <span className="text-gray-300">{"  "}</span>
-                  <span className="text-green-300">proxy</span>
-                  <span className="text-gray-300">{": "}</span>
-                  <span className="text-orange-300">{'"residential"'}</span>
-                  <span className="text-gray-300">{",\n"}</span>
-                  <span className="text-gray-300">{"  "}</span>
-                  <span className="text-green-300">llm</span>
-                  <span className="text-gray-300">{": { "}</span>
-                  <span className="text-green-300">provider</span>
-                  <span className="text-gray-300">{": "}</span>
-                  <span className="text-orange-300">{'"claude"'}</span>
-                  <span className="text-gray-300">{" },\n"}</span>
-                  <span className="text-gray-300">{"  "}</span>
-                  <span className="text-green-300">schedule</span>
-                  <span className="text-gray-300">{": "}</span>
-                  <span className="text-orange-300">{'"0 * * * *"'}</span>
-                  <span className="text-gray-300">{",\n"}</span>
-                  <span className="text-gray-300">{"});\n\n"}</span>
-                  <span className="text-gray-500">{"// env.browser, env.llm, env.files — all wired up.\n"}</span>
-                  <span className="text-purple-400">await </span>
-                  <span className="text-blue-300">env</span>
-                  <span className="text-gray-300">.</span>
-                  <span className="text-blue-400">browser</span>
-                  <span className="text-gray-300">.</span>
-                  <span className="text-blue-400">goto</span>
-                  <span className="text-gray-300">{"("}</span>
-                  <span className="text-orange-300">{'"https://example.com"'}</span>
-                  <span className="text-gray-300">{")"}</span>
-                  <span className="text-gray-300">{";"}</span>
+                  <span style={{ color: "#6b7280" }}>{"// Spin up a full environment in one call\n"}</span>
+                  <span style={{ color: "#c084fc" }}>{"const "}</span>
+                  <span style={{ color: "#e5e7eb" }}>env</span>
+                  <span style={{ color: "#6366f1" }}>{" = "}</span>
+                  <span style={{ color: "#f59e0b" }}>{"await "}</span>
+                  <span style={{ color: "#e5e7eb" }}>truman</span>
+                  <span style={{ color: "#6b7280" }}>{"."}</span>
+                  <span style={{ color: "#34d399" }}>{"create"}</span>
+                  <span style={{ color: "#e5e7eb" }}>{"({"}</span>
+                  <span>{"\n"}</span>
+                  <span style={{ color: "#e5e7eb" }}>{"  "}</span>
+                  <span style={{ color: "#818cf8" }}>{"browsers"}</span>
+                  <span style={{ color: "#6b7280" }}>{": "}</span>
+                  <span style={{ color: "#f59e0b" }}>{"5"}</span>
+                  <span style={{ color: "#e5e7eb" }}>{","}</span>
+                  <span>{"\n"}</span>
+                  <span style={{ color: "#e5e7eb" }}>{"  "}</span>
+                  <span style={{ color: "#818cf8" }}>{"proxy"}</span>
+                  <span style={{ color: "#6b7280" }}>{": "}</span>
+                  <span style={{ color: "#86efac" }}>{'"residential"'}</span>
+                  <span style={{ color: "#e5e7eb" }}>{","}</span>
+                  <span>{"\n"}</span>
+                  <span style={{ color: "#e5e7eb" }}>{"  "}</span>
+                  <span style={{ color: "#818cf8" }}>{"model"}</span>
+                  <span style={{ color: "#6b7280" }}>{": "}</span>
+                  <span style={{ color: "#86efac" }}>{'"claude-3-5-sonnet"'}</span>
+                  <span style={{ color: "#e5e7eb" }}>{","}</span>
+                  <span>{"\n"}</span>
+                  <span style={{ color: "#e5e7eb" }}>{"});"}</span>
+                  <span>{"\n\n"}</span>
+                  <span style={{ color: "#6b7280" }}>{"// Full stack, running, ready\n"}</span>
+                  <span style={{ color: "#e5e7eb" }}>{"await env"}</span>
+                  <span style={{ color: "#6b7280" }}>{"."}</span>
+                  <span style={{ color: "#34d399" }}>{"run"}</span>
+                  <span style={{ color: "#e5e7eb" }}>{"("}</span>
+                  <span style={{ color: "#86efac" }}>{"myWorkflow"}</span>
+                  <span style={{ color: "#e5e7eb" }}>{")"}</span>
+                  <span style={{ color: "#6b7280" }}>{";"}</span>
                 </code>
               </pre>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Value props */}
-        <section id="features" className="px-4 sm:px-6 py-20 border-t border-white/5">
-          <div className="mx-auto max-w-6xl">
-            <div className="text-center mb-14">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Everything your automation needs. Nothing it doesn&apos;t.
-              </h2>
-              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                Built for teams running web workflows at scale: social media management,
-                competitive monitoring, data collection.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {valueProps.map((vp) => (
-                <div
-                  key={vp.title}
-                  className="group rounded-2xl border border-white/8 bg-white/3 p-6 hover:border-indigo-500/30 hover:bg-indigo-500/5 transition"
-                >
-                  <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400 p-3">
-                    {vp.icon}
-                  </div>
-                  <h3 className="text-white font-semibold mb-2">{vp.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{vp.body}</p>
-                </div>
-              ))}
-            </div>
+      {/* Social proof strip */}
+      <div className="border-y" style={{ borderColor: "rgba(255,255,255,0.06)", backgroundColor: "rgba(255,255,255,0.02)" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+          <p className="text-center text-xs uppercase tracking-widest text-gray-600 mb-4">Built for teams running automated workflows at scale</p>
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-3 text-gray-500 text-sm font-medium">
+            {["Social media automation", "Competitive monitoring", "Data collection pipelines", "Web testing at scale"].map((use) => (
+              <span key={use} className="flex items-center gap-2">
+                <span className="w-1 h-1 rounded-full bg-indigo-500" />
+                {use}
+              </span>
+            ))}
           </div>
-        </section>
+        </div>
+      </div>
 
-        {/* Comparison */}
-        <section id="comparison" className="px-4 sm:px-6 py-20 border-t border-white/5">
-          <div className="mx-auto max-w-4xl">
-            <div className="text-center mb-14">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                The full stack, in one place
-              </h2>
-              <p className="text-gray-400 text-lg max-w-xl mx-auto">
-                Anti-detect tools give you profiles. Browserbase gives you headless Chrome.
-                Truman gives you all five layers, bundled.
-              </p>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-white/10">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-white/10 bg-white/3">
-                    <th className="text-left px-6 py-4 text-gray-400 font-medium">Feature</th>
-                    <th className="px-6 py-4 text-gray-400 font-medium">Others</th>
-                    <th className="px-6 py-4 text-indigo-400 font-semibold">Truman</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonItems.map((item, i) => (
-                    <tr
-                      key={item.label}
-                      className={`border-b border-white/5 last:border-0 ${i % 2 === 0 ? "bg-transparent" : "bg-white/2"}`}
-                    >
-                      <td className="px-6 py-4 text-gray-300">{item.label}</td>
-                      <td className="px-6 py-4 text-center text-gray-500">{item.them}</td>
-                      <td className="px-6 py-4 text-center">
-                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400">
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing */}
-        <section id="pricing" className="px-4 sm:px-6 py-20 border-t border-white/5">
-          <div className="mx-auto max-w-5xl">
-            <div className="text-center mb-14">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Simple pricing. No surprises.
-              </h2>
-              <p className="text-gray-400 text-lg">
-                Start free. Upgrade when you&apos;re ready.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-3 gap-6">
-              {pricingPlans.map((plan) => (
-                <div
-                  key={plan.name}
-                  className={`rounded-2xl border p-7 flex flex-col ${
-                    plan.highlight
-                      ? "border-indigo-500/50 bg-indigo-600/10 shadow-lg shadow-indigo-500/10"
-                      : "border-white/10 bg-white/3"
-                  }`}
-                >
-                  {plan.highlight && (
-                    <span className="inline-block self-start text-xs font-semibold text-indigo-300 bg-indigo-500/20 border border-indigo-500/30 rounded-full px-3 py-1 mb-4">
-                      Most popular
-                    </span>
-                  )}
-                  <h3 className="text-white font-bold text-lg">{plan.name}</h3>
-                  <div className="mt-3 mb-1 flex items-end gap-1">
-                    <span className={`text-4xl font-extrabold ${plan.highlight ? "text-white" : "text-gray-200"}`}>
-                      {plan.price}
-                    </span>
-                    {plan.period && (
-                      <span className="text-gray-400 mb-1">{plan.period}</span>
-                    )}
-                  </div>
-                  <p className="text-gray-500 text-sm mb-6">{plan.description}</p>
-
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2.5 text-sm text-gray-300">
-                        <svg className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <a
-                    href="#waitlist"
-                    className={`block text-center rounded-xl px-5 py-3 text-sm font-semibold transition ${
-                      plan.highlight
-                        ? "bg-indigo-600 hover:bg-indigo-500 text-white"
-                        : "bg-white/8 hover:bg-white/12 text-white border border-white/10"
-                    }`}
-                  >
-                    {plan.cta}
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Bottom CTA */}
-        <section className="px-4 sm:px-6 py-20 border-t border-white/5">
-          <div className="mx-auto max-w-2xl text-center">
+      {/* Value props */}
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Ready to stop stitching things together?
+              Everything your workflow needs. Nothing it doesn&apos;t.
             </h2>
-            <p className="text-gray-400 text-lg mb-8">
-              Get your first 3 browser instances free. No credit card, no lock-in.
+            <p className="text-gray-400 text-lg max-w-xl mx-auto">
+              No more gluing together six different services and praying they all stay up.
             </p>
-            <WaitlistForm className="max-w-lg mx-auto" />
           </div>
-        </section>
-      </main>
+          <div className="grid md:grid-cols-3 gap-6">
+            {valueProps.map((prop) => (
+              <div
+                key={prop.title}
+                className="rounded-2xl p-6 border transition-colors"
+                style={{ backgroundColor: "#17171d", borderColor: "rgba(255,255,255,0.07)" }}
+              >
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style={{ backgroundColor: "rgba(99,102,241,0.12)", color: "#818cf8" }}
+                >
+                  {prop.icon}
+                </div>
+                <h3 className="font-semibold text-white text-lg mb-2">{prop.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{prop.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison */}
+      <section className="py-24 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              The only full stack option
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Anti-detect browsers give you profiles. Browserbase gives you headless Chrome.
+              Truman gives you everything else too.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <div className="min-w-[540px] rounded-2xl border overflow-hidden" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
+              {/* Header */}
+              <div className="grid grid-cols-4 text-sm font-medium border-b" style={{ backgroundColor: "#17171d", borderColor: "rgba(255,255,255,0.07)" }}>
+                <div className="px-6 py-4 text-gray-500">Feature</div>
+                <div className="px-6 py-4 text-center" style={{ color: "#818cf8" }}>Truman</div>
+                <div className="px-6 py-4 text-center text-gray-500">Anti-detect</div>
+                <div className="px-6 py-4 text-center text-gray-500">Browserbase</div>
+              </div>
+              {comparisonItems.map((item, i) => (
+                <div
+                  key={item.feature}
+                  className="grid grid-cols-4 text-sm border-b last:border-b-0"
+                  style={{
+                    borderColor: "rgba(255,255,255,0.06)",
+                    backgroundColor: i % 2 === 0 ? "#0f0f13" : "rgba(255,255,255,0.015)",
+                  }}
+                >
+                  <div className="px-6 py-4 text-gray-300">{item.feature}</div>
+                  <div className="px-6 py-4 flex justify-center items-center">
+                    {item.truman ? <CheckIcon /> : <XIcon />}
+                  </div>
+                  <div className="px-6 py-4 flex justify-center items-center">
+                    {item.antiDetect ? <CheckIcon /> : <XIcon />}
+                  </div>
+                  <div className="px-6 py-4 flex justify-center items-center">
+                    {item.browserbase ? <CheckIcon /> : <XIcon />}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="py-24 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              How it works
+            </h2>
+            <p className="text-gray-400 text-lg">
+              From API call to running workflow in under 30 seconds.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Create an environment",
+                body: "One API call spins up an isolated Docker container for your user. Chrome instances, proxy lines, and LLM access are all configured and ready.",
+              },
+              {
+                step: "02",
+                title: "Write your workflow",
+                body: "Use any Playwright or Puppeteer script. Call our LLM endpoint to make decisions mid-workflow. Schedule it to run on a cron or trigger.",
+              },
+              {
+                step: "03",
+                title: "Ship and scale",
+                body: "Each user gets their own isolated environment. Add more instances as you grow. We handle the infra. You handle the logic.",
+              },
+            ].map((s) => (
+              <div key={s.step} className="relative">
+                <div className="text-5xl font-bold mb-4" style={{ color: "rgba(99,102,241,0.2)" }}>{s.step}</div>
+                <h3 className="text-white font-semibold text-lg mb-2">{s.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="py-24 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Simple pricing
+            </h2>
+            <p className="text-gray-400 text-lg max-w-xl mx-auto">
+              Start free. Pay when you ship. Scale when you grow.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 items-stretch">
+            {pricingTiers.map((tier) => (
+              <div
+                key={tier.name}
+                className="rounded-2xl p-7 border flex flex-col relative"
+                style={{
+                  backgroundColor: tier.highlight ? "rgba(99,102,241,0.07)" : "#17171d",
+                  borderColor: tier.highlight ? "rgba(99,102,241,0.4)" : "rgba(255,255,255,0.07)",
+                }}
+              >
+                {tier.highlight && (
+                  <div
+                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-semibold"
+                    style={{ backgroundColor: "#4f46e5", color: "#fff" }}
+                  >
+                    Most popular
+                  </div>
+                )}
+                <div className="mb-6">
+                  <div className="text-sm font-medium text-gray-400 mb-1">{tier.name}</div>
+                  <div className="flex items-end gap-1 mb-2">
+                    <span className="text-4xl font-bold text-white">{tier.price}</span>
+                    {tier.period && <span className="text-gray-500 text-sm mb-1">{tier.period}</span>}
+                  </div>
+                  <p className="text-gray-500 text-sm">{tier.description}</p>
+                </div>
+                <ul className="space-y-3 mb-8 flex-1">
+                  {tier.features.map((f) => (
+                    <li key={f} className="flex items-center gap-2.5 text-sm text-gray-300">
+                      <CheckIcon />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#waitlist"
+                  className="block text-center px-4 py-3 rounded-xl text-sm font-semibold transition-colors"
+                  style={{
+                    backgroundColor: tier.highlight ? "#4f46e5" : "rgba(255,255,255,0.05)",
+                    color: tier.highlight ? "#fff" : "#9ca3af",
+                    border: tier.highlight ? "none" : "1px solid rgba(255,255,255,0.1)",
+                  }}
+                >
+                  {tier.cta}
+                </a>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-sm text-gray-600 mt-8">
+            All plans include a 14-day money-back guarantee. No questions asked.
+          </p>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div
+            className="rounded-3xl p-12 border relative overflow-hidden"
+            style={{ backgroundColor: "#17171d", borderColor: "rgba(255,255,255,0.07)" }}
+          >
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(99,102,241,0.12), transparent)" }}
+            />
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 relative">
+              Stop managing infra. Start shipping.
+            </h2>
+            <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto relative">
+              Three instances free. No credit card. Get your workflow running in minutes, not days.
+            </p>
+            <div className="flex justify-center relative">
+              <WaitlistForm />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 px-4 sm:px-6 py-8">
-        <div className="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-600">
-          <span className="font-medium text-gray-500">Truman</span>
-          <span>Built with <a href="https://boringcombinator.com" className="text-gray-500 hover:text-gray-400 transition">Boring Combinator</a></span>
-          <span>&copy; {new Date().getFullYear()} Truman. All rights reserved.</span>
+      <footer className="border-t py-8" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}>
+              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+            </div>
+            <span className="text-sm font-medium text-gray-400">Truman</span>
+          </div>
+          <p className="text-sm text-gray-600">
+            Built with{" "}
+            <a
+              href="https://boringcombinator.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-gray-400 transition-colors"
+            >
+              Boring Combinator
+            </a>
+          </p>
+          <p className="text-xs text-gray-700">&copy; {new Date().getFullYear()} Truman. All rights reserved.</p>
         </div>
       </footer>
     </div>

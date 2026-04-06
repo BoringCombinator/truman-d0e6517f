@@ -2,8 +2,8 @@
 
 :root {
   --color-primary: #1A1A2E;
-  --color-accent: #E8C547;
-  --color-bg: #F5F4EF;
+  --color-accent: #E85C2F;
+  --color-bg: #F5F4F0;
   --color-text: #1A1A2E;
 }
 
@@ -38,13 +38,11 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-accent);
-  color: var(--color-primary);
+  background-color: #E85C2F;
+  color: #ffffff;
 }
 
-img,
-video {
-  max-width: 100%;
-  height: auto;
-  display: block;
+:focus-visible {
+  outline: 2px solid #E85C2F;
+  outline-offset: 2px;
 }

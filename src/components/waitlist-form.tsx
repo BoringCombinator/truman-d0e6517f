@@ -5,14 +5,14 @@ import { useState } from "react";
 export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
 
     setStatus("loading");
-    setErrorMessage("");
+    setErrorMsg("");
 
     try {
       const res = await fetch("https://boringcombinator.com/api/waitlist", {
@@ -21,57 +21,51 @@ export default function WaitlistForm() {
         body: JSON.stringify({ slug: "truman-d0e6517f", email }),
       });
 
-      if (!res.ok) {
-        throw new Error("Something went wrong. Please try again.");
-      }
+      if (!res.ok) throw new Error("Something went wrong. Try again.");
 
       setStatus("success");
       setEmail("");
     } catch (err) {
       setStatus("error");
-      setErrorMessage(
-        err instanceof Error ? err.message : "Something went wrong."
-      );
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
     }
   }
 
   if (status === "success") {
     return (
-      <div className="flex items-center gap-3 bg-[#1A1A2E] text-white rounded-xl px-5 py-4">
-        <span className="text-[#E8C547] text-xl">✓</span>
-        <div>
-          <p className="font-bold text-sm">You're on the list.</p>
-          <p className="text-white/50 text-xs mt-0.5">
-            We'll reach out when your access is ready.
-          </p>
-        </div>
+      <div className="bg-white/10 border border-white/20 rounded-2xl px-8 py-10 text-center">
+        <div className="text-4xl mb-4">🎉</div>
+        <h3 className="text-xl font-bold text-white mb-2">You&apos;re on the list</h3>
+        <p className="text-white/60 text-sm">
+          We&apos;ll reach out with early access. Get ready to stop babysitting containers.
+        </p>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <div className="flex flex-col sm:flex-row gap-2">
+      <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
         <input
           type="email"
           required
+          placeholder="you@company.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@company.com"
           disabled={status === "loading"}
-          className="flex-1 bg-white border border-[#1A1A2E]/15 text-[#1A1A2E] placeholder-[#1A1A2E]/35 rounded-xl px-4 py-3 text-sm font-medium outline-none focus:border-[#E8C547] focus:ring-2 focus:ring-[#E8C547]/30 transition-all disabled:opacity-50"
+          className="flex-1 bg-white/10 border border-white/20 text-white placeholder:text-white/30 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#E85C2F] focus:ring-2 focus:ring-[#E85C2F]/20 transition-all disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={status === "loading" || !email}
-          className="bg-[#E8C547] text-[#1A1A2E] font-bold text-sm px-5 py-3 rounded-xl hover:brightness-95 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+          className="bg-[#E85C2F] hover:bg-[#d04f25] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors whitespace-nowrap cursor-pointer"
         >
           {status === "loading" ? (
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 justify-center">
               <svg
-                className="animate-spin w-4 h-4"
-                fill="none"
+                className="animate-spin h-4 w-4"
                 viewBox="0 0 24 24"
+                fill="none"
               >
                 <circle
                   className="opacity-25"
@@ -84,19 +78,24 @@ export default function WaitlistForm() {
                 <path
                   className="opacity-75"
                   fill="currentColor"
-                  d="M4 12a8 8 0 018-8v8H4z"
+                  d="M4 12a8 8 0 018-8v8z"
                 />
               </svg>
               Joining...
             </span>
           ) : (
-            "Start building free →"
+            "Start building free"
           )}
         </button>
       </div>
+
       {status === "error" && (
-        <p className="text-red-500 text-xs mt-2 font-medium">{errorMessage}</p>
+        <p className="mt-3 text-sm text-red-400 text-center">{errorMsg}</p>
       )}
+
+      <p className="mt-4 text-white/30 text-xs text-center">
+        No credit card. No spam. Unsubscribe any time.
+      </p>
     </form>
   );
 }

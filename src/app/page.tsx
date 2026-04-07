@@ -1,53 +1,103 @@
 import WaitlistForm from "@/components/waitlist-form";
 
+const valueProps = [
+  {
+    title: "One environment per user. Fully isolated.",
+    description:
+      "Each user gets their own Docker container with concurrent Chrome instances, residential proxies, and multi-provider LLM access. Spin it all up with a single API call. No YAML files. No orchestration headaches.",
+  },
+  {
+    title: "Cut your infra bill in half.",
+    description:
+      "Stop paying for separate VPS instances, proxy pools, and API subscriptions. Truman bundles everything into one predictable monthly cost. Most teams save 50%+ on their first invoice.",
+  },
+  {
+    title: "Switch AI models per task.",
+    description:
+      "Use Claude for long-form analysis. GPT for quick classification. Gemini for vision tasks. Switch between providers on a per-request basis through one endpoint. No config changes, no API key juggling.",
+  },
+];
+
+const stackItems = [
+  { label: "Browser instances", detail: "Concurrent Chrome sessions per user" },
+  { label: "Residential proxies", detail: "Auto-rotating, geo-targeted" },
+  { label: "LLM access", detail: "Multi-provider, switchable per request" },
+  { label: "Task scheduling", detail: "Cron-based, with retry logic" },
+  { label: "File management", detail: "Per-environment persistent storage" },
+];
+
+const pricingTiers = [
+  {
+    name: "Free Trial",
+    price: "$0",
+    period: "",
+    features: [
+      "3 browser instances",
+      "1 proxy line",
+      "10K LLM tokens",
+      "7-day trial",
+    ],
+    cta: true,
+  },
+  {
+    name: "Starter",
+    price: "$79",
+    period: "/month",
+    features: [
+      "20 browser instances",
+      "5 proxy lines",
+      "100K LLM tokens",
+      "Priority support",
+    ],
+    cta: true,
+    highlighted: true,
+  },
+  {
+    name: "Scale",
+    price: "Custom",
+    period: "",
+    features: [
+      "Unlimited instances",
+      "Dedicated proxies",
+      "Usage-based tokens",
+      "SLA + onboarding",
+    ],
+    cta: true,
+  },
+];
+
 export default function Home() {
   return (
     <main>
-      {/* Nav */}
-      <nav
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "20px 32px",
-          maxWidth: "1120px",
-          margin: "0 auto",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "20px",
-            fontWeight: 700,
-            color: "var(--color-fg)",
-            letterSpacing: "-0.01em",
-          }}
-        >
-          Truman
-        </span>
-        <a href="#waitlist" className="btn-primary" style={{ padding: "8px 20px", fontSize: "13px" }}>
-          Join Waitlist
-        </a>
-      </nav>
-
       {/* Hero */}
       <section
         style={{
-          padding: "100px 32px 120px",
+          padding: "120px 24px 100px",
           textAlign: "center",
-          maxWidth: "800px",
+          maxWidth: "960px",
           margin: "0 auto",
         }}
       >
+        <p
+          style={{
+            fontSize: "13px",
+            fontFamily: "var(--font-mono)",
+            color: "var(--color-muted)",
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
+            marginBottom: "24px",
+          }}
+        >
+          Truman
+        </p>
         <h1
           style={{
-            fontFamily: "var(--font-serif)",
             fontSize: "clamp(36px, 5vw, 56px)",
+            fontFamily: "var(--font-serif)",
             fontWeight: 400,
-            lineHeight: 1.15,
-            color: "var(--color-fg)",
-            margin: "0 0 24px",
-            letterSpacing: "-0.02em",
+            lineHeight: 1.1,
+            marginBottom: "24px",
+            color: "var(--color-foreground)",
           }}
         >
           One API call.
@@ -56,34 +106,26 @@ export default function Home() {
         </h1>
         <p
           style={{
-            fontFamily: "var(--font-sans)",
             fontSize: "18px",
-            lineHeight: 1.65,
+            lineHeight: 1.6,
             color: "var(--color-muted)",
             maxWidth: "580px",
             margin: "0 auto 48px",
+            fontFamily: "var(--font-sans)",
           }}
         >
           Isolated browser environments with built-in proxies, AI models, and
-          scheduling. Stop babysitting Docker containers and stitching
-          infrastructure together by hand.
+          scheduling. Stop babysitting Docker containers.
         </p>
-        <WaitlistForm
-          className="hero-form"
-        />
-        <style>{`
-          .hero-form {
-            display: flex;
-            justify-content: center;
-            max-width: 480px;
-            margin: 0 auto;
-          }
-          @media (max-width: 520px) {
-            .hero-form {
-              flex-direction: column;
-            }
-          }
-        `}</style>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            position: "relative",
+          }}
+        >
+          <WaitlistForm />
+        </div>
       </section>
 
       {/* Divider */}
@@ -91,411 +133,88 @@ export default function Home() {
         style={{
           maxWidth: "960px",
           margin: "0 auto",
-          borderTop: "0.5px solid var(--color-border)",
+          padding: "0 24px",
         }}
-      />
+      >
+        <div
+          style={{
+            height: "0.5px",
+            backgroundColor: "var(--color-border)",
+          }}
+        />
+      </div>
 
       {/* What you get */}
       <section
         style={{
-          padding: "100px 32px",
+          padding: "100px 24px",
           maxWidth: "960px",
           margin: "0 auto",
         }}
       >
         <h2
           style={{
+            fontSize: "clamp(28px, 3.5vw, 40px)",
             fontFamily: "var(--font-serif)",
-            fontSize: "clamp(28px, 3.5vw, 36px)",
             fontWeight: 400,
-            color: "var(--color-fg)",
-            margin: "0 0 16px",
-            letterSpacing: "-0.015em",
+            textAlign: "center",
+            marginBottom: "16px",
           }}
         >
-          What you get with one API call
+          Five tools. One API.
         </h2>
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "16px",
+            textAlign: "center",
             color: "var(--color-muted)",
-            margin: "0 0 56px",
-            maxWidth: "560px",
+            fontSize: "16px",
+            maxWidth: "520px",
+            margin: "0 auto 64px",
+            fontFamily: "var(--font-sans)",
           }}
         >
-          Each user gets a fully isolated environment. Browsers, proxies, AI,
-          scheduling, and file storage. No assembly required.
+          Anti-detect browsers give you profiles. Browserbase gives you headless
+          Chrome. Truman gives you the full stack.
         </p>
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
-            gap: "16px",
-          }}
-        >
-          <div className="card">
-            <h3
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "15px",
-                fontWeight: 600,
-                margin: "0 0 12px",
-                color: "var(--color-fg)",
-              }}
-            >
-              Isolated Chrome instances
-            </h3>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "14px",
-                color: "var(--color-muted)",
-                margin: 0,
-                lineHeight: 1.6,
-              }}
-            >
-              N concurrent browsers per user, each in its own Docker container.
-              No crosstalk. No shared state. Spin them up or tear them down
-              through the API.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "15px",
-                fontWeight: 600,
-                margin: "0 0 12px",
-                color: "var(--color-fg)",
-              }}
-            >
-              Built-in residential proxies
-            </h3>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "14px",
-                color: "var(--color-muted)",
-                margin: 0,
-                lineHeight: 1.6,
-              }}
-            >
-              Rotating residential IPs assigned per environment. No third-party
-              proxy dashboard. No credential juggling. It just works.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "15px",
-                fontWeight: 600,
-                margin: "0 0 12px",
-                color: "var(--color-fg)",
-              }}
-            >
-              Multi-provider LLM access
-            </h3>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "14px",
-                color: "var(--color-muted)",
-                margin: 0,
-                lineHeight: 1.6,
-              }}
-            >
-              Route tasks to Claude, GPT, or any supported model. Switch
-              providers per request without touching config. One endpoint, every
-              model.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "15px",
-                fontWeight: 600,
-                margin: "0 0 12px",
-                color: "var(--color-fg)",
-              }}
-            >
-              Scheduling and file management
-            </h3>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "14px",
-                color: "var(--color-muted)",
-                margin: 0,
-                lineHeight: 1.6,
-              }}
-            >
-              Cron-style task scheduling and persistent file storage per
-              environment. Run workflows on autopilot. Access outputs anytime.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div
-        style={{
-          maxWidth: "960px",
-          margin: "0 auto",
-          borderTop: "0.5px solid var(--color-border)",
-        }}
-      />
-
-      {/* Why this exists */}
-      <section
-        style={{
-          padding: "100px 32px",
-          maxWidth: "960px",
-          margin: "0 auto",
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(28px, 3.5vw, 36px)",
-            fontWeight: 400,
-            color: "var(--color-fg)",
-            margin: "0 0 16px",
-            letterSpacing: "-0.015em",
-          }}
-        >
-          You know the pain
-        </h2>
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "16px",
-            color: "var(--color-muted)",
-            margin: "0 0 56px",
-            maxWidth: "560px",
-            lineHeight: 1.65,
-          }}
-        >
-          You&apos;re running social media automation, data collection, or competitive
-          monitoring. Right now your stack probably looks like this:
-        </p>
-
-        <div
-          className="comparison-grid"
-          style={{
-            gap: "0",
-            maxWidth: "720px",
-          }}
-        >
-          {/* Before column */}
-          <div
-            style={{
-              padding: "32px",
-              borderRight: "0.5px solid var(--color-border)",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
-                fontWeight: 600,
-                textTransform: "uppercase" as const,
-                letterSpacing: "0.06em",
-                color: "var(--color-muted)",
-                margin: "0 0 24px",
-              }}
-            >
-              Without Truman
-            </p>
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-                display: "flex",
-                flexDirection: "column",
-                gap: "16px",
-              }}
-            >
-              {[
-                "3-4 VPS providers to manage",
-                "Separate proxy pool subscription",
-                "Multiple LLM API keys and configs",
-                "Custom Docker orchestration",
-                "3-4 hours/day on ops and debugging",
-              ].map((item) => (
-                <li
-                  key={item}
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "14px",
-                    color: "var(--color-muted)",
-                    lineHeight: 1.5,
-                  }}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* After column */}
-          <div style={{ padding: "32px" }}>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
-                fontWeight: 600,
-                textTransform: "uppercase" as const,
-                letterSpacing: "0.06em",
-                color: "var(--color-fg)",
-                margin: "0 0 24px",
-              }}
-            >
-              With Truman
-            </p>
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-                display: "flex",
-                flexDirection: "column",
-                gap: "16px",
-              }}
-            >
-              {[
-                "One API. One bill.",
-                "Proxies built in per environment",
-                "Switch models per request",
-                "Containers managed for you",
-                "Back to building, not firefighting",
-              ].map((item) => (
-                <li
-                  key={item}
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "14px",
-                    color: "var(--color-fg)",
-                    lineHeight: 1.5,
-                    fontWeight: 500,
-                  }}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div
-        style={{
-          maxWidth: "960px",
-          margin: "0 auto",
-          borderTop: "0.5px solid var(--color-border)",
-        }}
-      />
-
-      {/* How it's different */}
-      <section
-        style={{
-          padding: "100px 32px",
-          maxWidth: "960px",
-          margin: "0 auto",
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(28px, 3.5vw, 36px)",
-            fontWeight: 400,
-            color: "var(--color-fg)",
-            margin: "0 0 16px",
-            letterSpacing: "-0.015em",
-          }}
-        >
-          Not another browser tool
-        </h2>
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "16px",
-            color: "var(--color-muted)",
-            margin: "0 0 56px",
-            maxWidth: "600px",
-            lineHeight: 1.65,
-          }}
-        >
-          Anti-detect browsers give you profiles. Browserbase gives you headless
-          Chrome. Truman gives you the full stack: browsers, proxies, AI,
-          scheduling, and file management in one isolated environment per user.
-          Nobody else bundles all five.
-        </p>
-
-        <div
-          className="stats-grid"
-          style={{
-            gap: "0",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "1px",
+            backgroundColor: "var(--color-border)",
             border: "0.5px solid var(--color-border)",
             borderRadius: "12px",
             overflow: "hidden",
-            background: "var(--color-surface)",
           }}
         >
-          {[
-            {
-              stat: "50%+",
-              label: "lower infra cost vs. self-managed setups",
-            },
-            {
-              stat: "3-4 hrs",
-              label: "of daily ops work eliminated",
-            },
-            {
-              stat: "1",
-              label: "API to replace your entire automation stack",
-            },
-          ].map((item, i) => (
+          {stackItems.map((item) => (
             <div
-              key={item.stat}
-              className="stats-cell"
+              key={item.label}
               style={{
-                padding: "40px 32px",
-                borderRight:
-                  i < 2 ? "0.5px solid var(--color-border)" : "none",
-                textAlign: "center",
+                padding: "32px",
+                backgroundColor: "var(--color-surface)",
               }}
             >
               <p
                 style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "32px",
-                  fontWeight: 400,
-                  color: "var(--color-fg)",
-                  margin: "0 0 8px",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                {item.stat}
-              </p>
-              <p
-                style={{
+                  fontSize: "15px",
+                  fontWeight: 500,
                   fontFamily: "var(--font-sans)",
-                  fontSize: "13px",
-                  color: "var(--color-muted)",
-                  margin: 0,
-                  lineHeight: 1.5,
+                  marginBottom: "6px",
+                  color: "var(--color-foreground)",
                 }}
               >
                 {item.label}
+              </p>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "var(--color-muted)",
+                  fontFamily: "var(--font-sans)",
+                }}
+              >
+                {item.detail}
               </p>
             </div>
           ))}
@@ -507,174 +226,63 @@ export default function Home() {
         style={{
           maxWidth: "960px",
           margin: "0 auto",
-          borderTop: "0.5px solid var(--color-border)",
+          padding: "0 24px",
         }}
-      />
+      >
+        <div
+          style={{
+            height: "0.5px",
+            backgroundColor: "var(--color-border)",
+          }}
+        />
+      </div>
 
-      {/* Pricing */}
+      {/* Value props */}
       <section
         style={{
-          padding: "100px 32px",
+          padding: "100px 24px",
           maxWidth: "960px",
           margin: "0 auto",
         }}
       >
-        <h2
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(28px, 3.5vw, 36px)",
-            fontWeight: 400,
-            color: "var(--color-fg)",
-            margin: "0 0 16px",
-            letterSpacing: "-0.015em",
-          }}
-        >
-          Simple pricing
-        </h2>
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "16px",
-            color: "var(--color-muted)",
-            margin: "0 0 56px",
-            maxWidth: "480px",
-            lineHeight: 1.65,
-          }}
-        >
-          Start free. Pay when you scale.
-        </p>
-
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "16px",
-            maxWidth: "640px",
+            gap: "64px",
           }}
         >
-          <div className="card">
-            <p
+          {valueProps.map((prop, i) => (
+            <div
+              key={i}
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
-                fontWeight: 600,
-                textTransform: "uppercase" as const,
-                letterSpacing: "0.06em",
-                color: "var(--color-muted)",
-                margin: "0 0 16px",
+                display: "grid",
+                gridTemplateColumns: "1fr",
+                gap: "16px",
+                maxWidth: "640px",
               }}
             >
-              Free trial
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "36px",
-                color: "var(--color-fg)",
-                margin: "0 0 20px",
-              }}
-            >
-              $0
-            </p>
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-              }}
-            >
-              {[
-                "3 browser instances",
-                "1 proxy line",
-                "10K LLM tokens",
-                "No credit card required",
-              ].map((item) => (
-                <li
-                  key={item}
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "14px",
-                    color: "var(--color-muted)",
-                  }}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div
-            className="card"
-            style={{
-              background: "var(--color-fg)",
-              color: "var(--color-bg)",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
-                fontWeight: 600,
-                textTransform: "uppercase" as const,
-                letterSpacing: "0.06em",
-                color: "rgba(255,255,255,0.5)",
-                margin: "0 0 16px",
-              }}
-            >
-              Pro
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "36px",
-                color: "var(--color-bg)",
-                margin: "0 0 4px",
-              }}
-            >
-              $79
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.5)",
-                margin: "0 0 20px",
-              }}
-            >
-              per month
-            </p>
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-              }}
-            >
-              {[
-                "20 browser instances",
-                "5 proxy lines",
-                "100K LLM tokens",
-                "Usage-based tiers above",
-              ].map((item) => (
-                <li
-                  key={item}
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "14px",
-                    color: "rgba(255,255,255,0.7)",
-                  }}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+              <h3
+                style={{
+                  fontSize: "clamp(22px, 3vw, 28px)",
+                  fontFamily: "var(--font-serif)",
+                  fontWeight: 400,
+                  lineHeight: 1.3,
+                }}
+              >
+                {prop.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: "16px",
+                  lineHeight: 1.7,
+                  color: "var(--color-muted)",
+                  fontFamily: "var(--font-sans)",
+                }}
+              >
+                {prop.description}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -683,75 +291,331 @@ export default function Home() {
         style={{
           maxWidth: "960px",
           margin: "0 auto",
-          borderTop: "0.5px solid var(--color-border)",
+          padding: "0 24px",
         }}
-      />
+      >
+        <div
+          style={{
+            height: "0.5px",
+            backgroundColor: "var(--color-border)",
+          }}
+        />
+      </div>
 
-      {/* Final CTA */}
+      {/* Who it's for */}
       <section
-        id="waitlist"
         style={{
-          padding: "100px 32px 120px",
-          textAlign: "center",
-          maxWidth: "640px",
+          padding: "100px 24px",
+          maxWidth: "960px",
           margin: "0 auto",
+          textAlign: "center",
         }}
       >
         <h2
           style={{
+            fontSize: "clamp(28px, 3.5vw, 40px)",
             fontFamily: "var(--font-serif)",
-            fontSize: "clamp(28px, 3.5vw, 36px)",
             fontWeight: 400,
-            color: "var(--color-fg)",
-            margin: "0 0 16px",
-            letterSpacing: "-0.015em",
+            marginBottom: "16px",
           }}
         >
-          Ready to stop managing infra?
+          Built for teams running web automation at scale
         </h2>
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "16px",
             color: "var(--color-muted)",
-            margin: "0 0 40px",
-            lineHeight: 1.65,
+            fontSize: "16px",
+            maxWidth: "560px",
+            margin: "0 auto 48px",
+            fontFamily: "var(--font-sans)",
+            lineHeight: 1.7,
           }}
         >
-          Get early access. Free trial with 3 browser instances, no credit card.
+          If you&apos;re stitching together VPS instances, proxy pools, and
+          browser automation by hand, you already know the pain. Truman replaces
+          that entire stack.
         </p>
-        <WaitlistForm
-          className="cta-form"
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "24px",
+            textAlign: "left",
+          }}
+        >
+          {[
+            {
+              heading: "Social media ops",
+              text: "Manage hundreds of accounts across platforms without sharing browser fingerprints.",
+            },
+            {
+              heading: "Data collection",
+              text: "Scrape at scale with rotating proxies and AI-powered extraction. No more broken selectors.",
+            },
+            {
+              heading: "Competitive monitoring",
+              text: "Track pricing, inventory, and content changes across competitor sites automatically.",
+            },
+          ].map((item) => (
+            <div
+              key={item.heading}
+              style={{
+                padding: "32px",
+                backgroundColor: "var(--color-surface)",
+                borderRadius: "12px",
+                border: "0.5px solid var(--color-border)",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "15px",
+                  fontWeight: 500,
+                  fontFamily: "var(--font-sans)",
+                  marginBottom: "8px",
+                  color: "var(--color-foreground)",
+                }}
+              >
+                {item.heading}
+              </p>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "var(--color-muted)",
+                  fontFamily: "var(--font-sans)",
+                  lineHeight: 1.6,
+                }}
+              >
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div
+        style={{
+          maxWidth: "960px",
+          margin: "0 auto",
+          padding: "0 24px",
+        }}
+      >
+        <div
+          style={{
+            height: "0.5px",
+            backgroundColor: "var(--color-border)",
+          }}
         />
-        <style>{`
-          .cta-form {
-            display: flex;
-            justify-content: center;
-            max-width: 480px;
-            margin: 0 auto;
-          }
-          @media (max-width: 520px) {
-            .cta-form {
-              flex-direction: column;
-            }
-          }
-        `}</style>
+      </div>
+
+      {/* Pricing */}
+      <section
+        style={{
+          padding: "100px 24px",
+          maxWidth: "960px",
+          margin: "0 auto",
+          textAlign: "center",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "clamp(28px, 3.5vw, 40px)",
+            fontFamily: "var(--font-serif)",
+            fontWeight: 400,
+            marginBottom: "16px",
+          }}
+        >
+          Simple pricing
+        </h2>
+        <p
+          style={{
+            color: "var(--color-muted)",
+            fontSize: "16px",
+            maxWidth: "460px",
+            margin: "0 auto 48px",
+            fontFamily: "var(--font-sans)",
+          }}
+        >
+          Start free. Scale when you&apos;re ready.
+        </p>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+            gap: "24px",
+            textAlign: "left",
+          }}
+        >
+          {pricingTiers.map((tier) => (
+            <div
+              key={tier.name}
+              style={{
+                padding: "36px 32px",
+                backgroundColor: tier.highlighted
+                  ? "var(--color-foreground)"
+                  : "var(--color-surface)",
+                borderRadius: "12px",
+                border: tier.highlighted
+                  ? "0.5px solid var(--color-foreground)"
+                  : "0.5px solid var(--color-border)",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "13px",
+                  fontFamily: "var(--font-mono)",
+                  color: tier.highlighted
+                    ? "rgba(255,255,255,0.6)"
+                    : "var(--color-muted)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  marginBottom: "12px",
+                }}
+              >
+                {tier.name}
+              </p>
+              <p
+                style={{
+                  fontSize: "36px",
+                  fontFamily: "var(--font-mono)",
+                  fontWeight: 400,
+                  color: tier.highlighted
+                    ? "#ffffff"
+                    : "var(--color-foreground)",
+                  marginBottom: "4px",
+                  lineHeight: 1,
+                }}
+              >
+                {tier.price}
+                <span
+                  style={{
+                    fontSize: "14px",
+                    color: tier.highlighted
+                      ? "rgba(255,255,255,0.5)"
+                      : "var(--color-muted)",
+                  }}
+                >
+                  {tier.period}
+                </span>
+              </p>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: "24px 0 32px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  flex: 1,
+                }}
+              >
+                {tier.features.map((feature) => (
+                  <li
+                    key={feature}
+                    style={{
+                      fontSize: "14px",
+                      fontFamily: "var(--font-sans)",
+                      color: tier.highlighted
+                        ? "rgba(255,255,255,0.8)"
+                        : "var(--color-muted)",
+                    }}
+                  >
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#top"
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  padding: "12px 24px",
+                  fontSize: "14px",
+                  fontFamily: "var(--font-sans)",
+                  fontWeight: 500,
+                  backgroundColor: tier.highlighted
+                    ? "#ffffff"
+                    : "var(--color-foreground)",
+                  color: tier.highlighted
+                    ? "var(--color-foreground)"
+                    : "#ffffff",
+                  borderRadius: "8px",
+                  textDecoration: "none",
+                  transition: "opacity 150ms ease",
+                }}
+              >
+                Join Waitlist
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section
+        style={{
+          padding: "100px 24px",
+          textAlign: "center",
+          maxWidth: "960px",
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            height: "0.5px",
+            backgroundColor: "var(--color-border)",
+            marginBottom: "100px",
+          }}
+        />
+        <h2
+          style={{
+            fontSize: "clamp(28px, 3.5vw, 40px)",
+            fontFamily: "var(--font-serif)",
+            fontWeight: 400,
+            marginBottom: "16px",
+          }}
+        >
+          Stop managing infrastructure.
+          <br />
+          Start shipping automations.
+        </h2>
+        <p
+          style={{
+            color: "var(--color-muted)",
+            fontSize: "16px",
+            maxWidth: "480px",
+            margin: "0 auto 48px",
+            fontFamily: "var(--font-sans)",
+          }}
+        >
+          Free trial with 3 browser instances. No credit card required.
+        </p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            position: "relative",
+          }}
+        >
+          <WaitlistForm />
+        </div>
       </section>
 
       {/* Footer */}
       <footer
         style={{
-          borderTop: "0.5px solid var(--color-border)",
-          padding: "32px",
+          padding: "48px 24px",
           textAlign: "center",
+          borderTop: "0.5px solid var(--color-border)",
         }}
       >
         <p
           style={{
-            fontFamily: "var(--font-sans)",
             fontSize: "13px",
             color: "var(--color-muted)",
-            margin: 0,
+            fontFamily: "var(--font-sans)",
           }}
         >
           Built with Boring Combinator
